@@ -16,6 +16,7 @@ MonoBehaviour:
     rid: 3964809500465561600
   nodes:
   - rid: 3964809500465561600
+  - rid: 3964809501597761536
   treeState: 0
   blackboard:
     keys:
@@ -39,10 +40,25 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         child:
-          rid: -2
+          rid: 3964809501597761536
     - rid: 3964809500465561601
       type: {class: IntKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         name: TEST
         typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
         value: 10
+    - rid: 3964809501597761536
+      type: {class: Log, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: dbe15baf6244b5e4ebf8fbccc24df16e
+        position: {x: -381, y: 272}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        message:
+          reference:
+            rid: -2
+          defaultValue: oui

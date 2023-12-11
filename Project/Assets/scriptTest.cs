@@ -9,14 +9,17 @@ public class scriptTest : MonoBehaviour
 {
 
     public BehaviourTree tree;
-    public BehaviourTreeInstance inst;
+
+    private Blackboard blackboard;
 
     BlackboardKey<int> value;
 
     // Start is called before the first frame update
     void Start()
     {
-        value = inst.FindBlackboardKey<int>("TEST");
+        blackboard = tree.blackboard;
+
+        value = blackboard.Find<int>("TEST");
 
         value.value = 7777;
     }
