@@ -34,16 +34,16 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
         input.Enable();
-        input.Player.Move.performed += ctx => PlayerMove(ctx);
-        input.Player.Move.canceled += ctx => OnStop(ctx);
+        //input.Player.Move.performed += ctx => PlayerMove(ctx);
+        //input.Player.Move.canceled += ctx => OnStop(ctx);
 
     }
 
     private void OnDisable()
     {
         input.Disable();
-        input.Player.Move.performed -= ctx => PlayerMove(ctx);
-        input.Player.Move.canceled -= ctx => OnStop(ctx);
+        //input.Player.Move.performed -= ctx => PlayerMove(ctx);
+        //input.Player.Move.canceled -= ctx => OnStop(ctx);
 
     }
 
@@ -53,8 +53,9 @@ public class InputManager : MonoBehaviour
     }
 
 
-    private void PlayerMove(InputAction.CallbackContext value)
+    public void PlayerMove(InputAction.CallbackContext value)
     {
+        Debug.Log("move");
         moveVector = value.ReadValue<Vector2>();
 
 
@@ -103,6 +104,6 @@ public class InputManager : MonoBehaviour
 
     private void OnStop(InputAction.CallbackContext value)
     {
-
+        rb.velocity = Vector2.zero;
     }
 }

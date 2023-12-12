@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections;
 using System.Collections.Generic;
 using TheKiwiCoder;
@@ -32,3 +32,4 @@ public class scriptTest : MonoBehaviour
         Debug.Log(value);
     }
 }
+*/
