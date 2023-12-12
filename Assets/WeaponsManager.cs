@@ -14,6 +14,12 @@ public class WeaponsManager : MonoBehaviour
         allWeaponsRB = GetComponentsInChildren<Rigidbody2D>();
         nbChild = allWeaponsRB.Length;
         index = 0;
+
+
+        for (int i = 0; i < nbChild; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame

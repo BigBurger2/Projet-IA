@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 54071827}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RenderGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29415,7 +29415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 211723899}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29700,8 +29700,8 @@ GameObject:
   m_Component:
   - component: {fileID: 310495613}
   - component: {fileID: 310495614}
-  m_Layer: 0
-  m_Name: Basic tools and meterials_5
+  m_Layer: 7
+  m_Name: TEMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30125,6 +30125,7 @@ GameObject:
   - component: {fileID: 688154504}
   - component: {fileID: 688154506}
   - component: {fileID: 688154505}
+  - component: {fileID: 688154507}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -30216,11 +30217,28 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &688154507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688154503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4ce75150d1a454b814af8606d810f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSpeed: 26.4
+  targetPos: {x: 0, y: 0}
+  fired: 0
+  rb: {fileID: 688154506}
+  Dir: {x: 0, y: 0}
 --- !u!1 &801178830
 GameObject:
   m_ObjectHideFlags: 0
@@ -38357,7 +38375,7 @@ GameObject:
   - component: {fileID: 1341899896}
   - component: {fileID: 1341899897}
   - component: {fileID: 1341899898}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38467,7 +38485,7 @@ GameObject:
   - component: {fileID: 1391924457}
   - component: {fileID: 1391924458}
   - component: {fileID: 1391924459}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38502,6 +38520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ctr: {fileID: 1825248926}
+  shoot: {fileID: 1825248927}
 --- !u!114 &1391924459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38544,7 +38563,19 @@ MonoBehaviour:
     m_ActionId: dca9cc5a-5902-4a88-955b-c9b7b21b5aea
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1391924458}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d2f52aec-2d70-4056-b287-8802b07b3769
     m_ActionName: 'Player/Shoot[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -38563,7 +38594,7 @@ GameObject:
   - component: {fileID: 1647144953}
   - component: {fileID: 1647144955}
   - component: {fileID: 1647144954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Render
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38718,7 +38749,7 @@ GameObject:
   - component: {fileID: 1825248925}
   - component: {fileID: 1825248926}
   - component: {fileID: 1825248927}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Action
   m_TagString: Untagged
   m_Icon: {fileID: 0}

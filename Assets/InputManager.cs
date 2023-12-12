@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     public CustomInput input;
     
     public Controller ctr;
+    public Shoot shoot;
 
     private void Awake()
     {
@@ -41,5 +42,10 @@ public class InputManager : MonoBehaviour
     {
         Vector2 toSend = value.ReadValue<Vector2>();
         ctr.Move(toSend);
+    }
+
+    public void OnShoot()
+    {
+        shoot.Action();
     }
 }

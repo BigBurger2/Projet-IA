@@ -14,7 +14,7 @@ public class Shoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nbChild = allWeaponsRb.Length;
+        nbChild = Weapons.transform.childCount;
         index = 0;
     }
 
@@ -27,8 +27,11 @@ public class Shoot : MonoBehaviour
 
     public void Action()
     {
-        Weapons.transform.GetChild(index).gameObject.SetActive(true);
-
-
+        Transform temp = Weapons.transform.GetChild(index);
+        temp.GetComponent<WeaponMove>().Dir = (Target.position - transform.parent.position).normalized;
+        temp.gameObject.SetActive(true);
+        temp.GetComponent<WeaponMove>().fired = true;
+        index++;
+        index %= nbChild;
     }
 }
