@@ -11,7 +11,7 @@ public class Controller : MonoBehaviour
 
     private Vector2 moveVector = Vector2.zero;
     [Range(1f, 50f)]
-    public float moveSpeed;
+    public float moveSpeed = 1f;
 
     enum AnimStates
     {
@@ -24,12 +24,13 @@ public class Controller : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = moveVector * moveSpeed;
+        Debug.Log(moveVector * moveSpeed);
     }
 
     public void Move(Vector2 _moveVector)
     {
         moveVector = _moveVector;
-        //Debug.Log(moveVector);
+        Debug.Log("move : " + moveVector);
 
         // Animation Management
         float x = moveVector.x;
