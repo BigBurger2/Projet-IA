@@ -8,14 +8,14 @@ public class Controller : MonoBehaviour
     public Animator animator;
     private int LastDirection = -1;
     public Rigidbody2D rb;
-    public GameObject target;
+    [HideInInspector]
+    public Vector2 vectorDir = Vector2.down;
+    
 
     private Vector2 moveVector = Vector2.zero;
-    private Vector2 targetVector = Vector2.down;
     [Range(1f, 50f)]
     public float moveSpeed = 1f;
-    [Range(1, 50)]
-    public int range = 100;
+
 
     enum AnimStates
     {
@@ -29,8 +29,6 @@ public class Controller : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = moveVector * moveSpeed;
-
-        target.transform.position = rb.position + targetVector.normalized * range;
     }
 
     public void Move(Vector2 _moveVector)
@@ -48,7 +46,7 @@ public class Controller : MonoBehaviour
 
         if (characterSpeed > 0.1)
         {
-            targetVector = moveVector;
+            vectorDir = moveVector;
 
             if (((y > 0) ? 1 : -1) * y < ((x > 0) ? 1 : -1) * x)
             {

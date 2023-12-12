@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
         input.Enable();
+        input.Player.Shoot.performed += ctx => OnShoot();
         //input.Player.Move.performed += ctx => PlayerMove(ctx);
         //input.Player.Move.canceled += ctx => OnStop(ctx);
 
@@ -27,6 +28,8 @@ public class InputManager : MonoBehaviour
     private void OnDisable()
     {
         input.Disable();
+        input.Player.Shoot.performed -= ctx => OnShoot();
+
         //input.Player.Move.performed -= ctx => PlayerMove(ctx);
         //input.Player.Move.canceled -= ctx => OnStop(ctx);
 
