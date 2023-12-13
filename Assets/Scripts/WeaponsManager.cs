@@ -17,7 +17,9 @@ public class WeaponsManager : MonoBehaviour
     public Transform Player;
     public Controller playerController;
     [SerializeField]
-    private List<GameObject> weaponsPrefabs;
+    private GameObject weaponPrefab;
+    [SerializeField]
+    private List<WeaponData> weaponDatas;
 
     private Dictionary<GameObject, WeaponList> actualWeapons;
 
@@ -32,15 +34,16 @@ public class WeaponsManager : MonoBehaviour
     public void InitAllWeapons()
     {
         // Génère les copies nécessaire et associe une instance de coroutine pour chaque arme
-        foreach(var weapon in weaponsPrefabs)
+        foreach(var data in weaponDatas)
         {
-            Weapon wp = weapon.GetComponent<Weapon>();
+            Weapon wp = weaponPrefab.GetComponent<Weapon>();
+            wp.weaponData = data;
             // Create the parent object
-            GameObject parent = Instantiate(new GameObject(wp.weaponData.weaponName), transform);
+            GameObject parent = Instantiate(new GameObject(data.weaponName), transform);
 
             // Associe une instance de coroutine à la weapon afin de gérer son fireRate
             WeaponList tmpWpList = new WeaponList();
-            tmpWpList.Coroutine = FireCoroutine(parent, wp.weaponData);
+            tmpWpList.Coroutine = FireCoroutine(parent, data);
             tmpWpList.weapons = new List<Weapon>();
             
 
@@ -54,7 +57,7 @@ public class WeaponsManager : MonoBehaviour
             // Instantiation de toutes les copies nécessaires
             for (int i = 0;  i < nbWeaponsToStore; i++)
             {
-                GameObject temp = Instantiate(weapon, parent.transform);
+                GameObject temp = Instantiate(weaponPrefab, parent.transform);
                 temp.SetActive(false);
                 tmpWpList.weapons.Add(temp.GetComponent<Weapon>());
             }

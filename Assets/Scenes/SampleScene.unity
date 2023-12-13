@@ -38041,8 +38041,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   Player: {fileID: 1341899896}
   playerController: {fileID: 1825248926}
-  weaponsPrefabs:
-  - {fileID: 3830470635086441469, guid: 02d70a9452b4a0d40a49810dceb62d24, type: 3}
+  weaponPrefab: {fileID: 3830470635086441469, guid: 02d70a9452b4a0d40a49810dceb62d24, type: 3}
+  weaponDatas:
+  - {fileID: 11400000, guid: 2966d0ec7ebcde14595265952a4aeaef, type: 2}
+  - {fileID: 11400000, guid: 4b235a87e57221441b7f424d7dd737fd, type: 2}
 --- !u!1 &1341899895
 GameObject:
   m_ObjectHideFlags: 0
