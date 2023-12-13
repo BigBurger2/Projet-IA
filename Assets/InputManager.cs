@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     
     public Controller ctr;
     public Shoot shoot;
+    public PauseManager pauseManager;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class InputManager : MonoBehaviour
     {
         input.Enable();
         input.Player.Shoot.performed += ctx => OnShoot();
+        input.Player.MenuPause.performed += ctx => Pause();
         //input.Player.Move.performed += ctx => PlayerMove(ctx);
         //input.Player.Move.canceled += ctx => OnStop(ctx);
 
@@ -29,6 +31,7 @@ public class InputManager : MonoBehaviour
     {
         input.Disable();
         input.Player.Shoot.performed -= ctx => OnShoot();
+        input.Player.MenuPause.performed += ctx => Pause();
 
         //input.Player.Move.performed -= ctx => PlayerMove(ctx);
         //input.Player.Move.canceled -= ctx => OnStop(ctx);
@@ -50,5 +53,10 @@ public class InputManager : MonoBehaviour
     public void OnShoot()
     {
         shoot.Action();
+    }
+
+    public void Pause()
+    {
+        pauseManager.Pause();
     }
 }
