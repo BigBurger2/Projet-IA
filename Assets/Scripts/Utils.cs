@@ -5,7 +5,7 @@ using UnityEngine;
 public class Utils
 {
 
-    public static int CalcNbProjecctiles(float range, float speed, float fireRate)
+    public static int CalcNbProjectiles(float range, float speed, float fireRate)
     {
         // Calc nb weapon
         int nbWeaponsToStore = 1;
@@ -15,7 +15,7 @@ public class Utils
 
         if (timeForTravel > timeBetweenFire)
         {
-            nbWeaponsToStore = (int)(timeForTravel / timeBetweenFire) + 1;
+            nbWeaponsToStore = (int)(timeForTravel / timeBetweenFire) + 2;
         }
 
         return nbWeaponsToStore;

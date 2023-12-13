@@ -206,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: {x: 0, y: 0}
   startPos: {x: 0, y: 0}
-  fired: 0
-  rb: {fileID: 3263280359267614181}
   Dir: {x: 0, y: 0}
+  rb: {fileID: 3263280359267614181}
   weaponData: {fileID: 11400000, guid: 2966d0ec7ebcde14595265952a4aeaef, type: 2}
+  spriteRenderer: {fileID: 6821487038558535913}

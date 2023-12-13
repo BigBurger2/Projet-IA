@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BaseWeapons
   m_EditorClassIdentifier: 
   weaponName: BaseWeapon
-  description: 
+  description: Un arme de base quoi
   weaponSpeed: 20
   range: 10
   fireRate: 5

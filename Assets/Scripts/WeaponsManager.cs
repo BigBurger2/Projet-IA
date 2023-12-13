@@ -2,54 +2,69 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Structure qui stocke les copies des armes pour l'object pool et la référence à sa coroutine
+struct WeaponList
+{
+    public int nbWeapons;
+    public List<Weapon> weapons;
+    public IEnumerator Coroutine;
+}
+
 public class WeaponsManager : MonoBehaviour
 {
     public Transform Target;
     public Transform Player;
     public Controller playerController;
-    public List<GameObject> weaponsPrefabs;
+    [SerializeField]
+    private List<GameObject> weaponsPrefabs;
 
-    private Dictionary<GameObject, List<Weapon>> actualWeapons;
-    private int nbChild;
-    private int index;
+    private Dictionary<GameObject, WeaponList> actualWeapons;
 
+    private int index = 0;
 
     private void Awake()
     {
+        actualWeapons = new Dictionary<GameObject, WeaponList>();
         InitAllWeapons();
     }
 
     public void InitAllWeapons()
     {
+        // Génère les copies nécessaire et associe une instance de coroutine pour chaque arme
         foreach(var weapon in weaponsPrefabs)
         {
             Weapon wp = weapon.GetComponent<Weapon>();
             // Create the parent object
             GameObject parent = Instantiate(new GameObject(wp.weaponData.weaponName), transform);
 
-            actualWeapons.Add(parent, new List<Weapon>());
+            // Associe une instance de coroutine à la weapon afin de gérer son fireRate
+            WeaponList tmpWpList = new WeaponList();
+            tmpWpList.Coroutine = FireCoroutine(parent, wp.weaponData);
+            tmpWpList.weapons = new List<Weapon>();
+            
 
             // Calc nb weapon
             float range = wp.weaponData.range;
             float speed = wp.weaponData.weaponSpeed;
             float fireRate = wp.weaponData.fireRate;
 
-            int nbWeaponsToStore = Utils.CalcNbProjecctiles(range, speed, fireRate);
+            int nbWeaponsToStore = Utils.CalcNbProjectiles(range, speed, fireRate);
 
+            // Instantiation de toutes les copies nécessaires
             for (int i = 0;  i < nbWeaponsToStore; i++)
             {
                 GameObject temp = Instantiate(weapon, parent.transform);
                 temp.SetActive(false);
-                actualWeapons[parent].Add(temp.GetComponent<Weapon>());
+                tmpWpList.weapons.Add(temp.GetComponent<Weapon>());
             }
+
+            // Ajout de la paire Weapon et WeaponList
+            tmpWpList.nbWeapons = nbWeaponsToStore;
+            actualWeapons.Add(parent, tmpWpList);
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        index = 0;
-    }
 
     // Update is called once per frame
     void Update()
@@ -74,12 +89,36 @@ public class WeaponsManager : MonoBehaviour
 
         foreach (var weaponList in actualWeapons)
         {
-            foreach(var wp in weaponList.Value)
-            {
-                wp.startPos = Player.position;
-                wp.Dir = (new Vector2(Player.position.x, Player.position.y) + playerController.vectorDir.normalized - wp.startPos).normalized;
-            }
+
+            StartCoroutine(weaponList.Value.Coroutine);
+            
         }
 
+    }
+
+    public void Stop()
+    {
+        foreach (var weaponList in actualWeapons)
+        {
+            StopCoroutine(weaponList.Value.Coroutine);
+        }
+    }
+
+
+    public IEnumerator FireCoroutine(GameObject parent, WeaponData weaponData)
+    {
+        
+        while (true)
+        {
+            Transform temp = parent.transform.GetChild(index);
+            temp.position = Player.position;
+
+            actualWeapons[parent].weapons[index].Fire(playerController.vectorDir);
+
+
+            index++;
+            index %= actualWeapons[parent].nbWeapons;
+            yield return new WaitForSeconds(1f / weaponData.fireRate);
+        }
     }
 }

@@ -9,8 +9,8 @@ public class Weapon : MonoBehaviour
     public Vector2 targetPos;
     [HideInInspector]
     public Vector2 startPos;
-    [HideInInspector]
-    public bool fired;
+
+    private bool fired;
     [HideInInspector]
     public Vector2 Dir;
 
@@ -18,10 +18,15 @@ public class Weapon : MonoBehaviour
 
     public WeaponData weaponData;
 
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        spriteRenderer.sprite = weaponData.sprite;
     }
 
     // Update is called once per frame
@@ -40,16 +45,19 @@ public class Weapon : MonoBehaviour
             }
             else
             {
+                fired = false;
                 gameObject.SetActive(false);
             }
         }
     }
 
-    public IEnumerator Fire()
+    public void Fire(Vector2 _Dir)
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(1/weaponData.fireRate);
-        }
+        startPos = transform.position;
+        Dir = _Dir.normalized;
+        gameObject.SetActive(true);
+        fired = true;
     }
+
+    
 }
