@@ -7,19 +7,13 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        StartCoroutine(ChangeScene());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame()
     {
         Debug.Log("Application Quitted");
         Application.Quit();
-    }
-
-    private IEnumerator ChangeScene()
-    {
-        yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }
