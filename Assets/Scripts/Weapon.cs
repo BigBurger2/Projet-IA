@@ -3,26 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class WeaponMove : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
-    [Range(1f, 50f)]
-    public float weaponSpeed;
     [HideInInspector]
     public Vector2 targetPos;
     [HideInInspector]
     public Vector2 startPos;
-
     [HideInInspector]
     public bool fired;
-    public Rigidbody2D rb;
     [HideInInspector]
     public Vector2 Dir;
 
-    [Range(1, 50)]
-    public int range;
+    public Rigidbody2D rb;
 
-    public GameObject target;
-
+    public WeaponData weaponData;
 
     // Start is called before the first frame update
     void Start()
@@ -40,14 +34,22 @@ public class WeaponMove : MonoBehaviour
     {
         if (fired)
         {
-            if ((startPos - new Vector2(transform.position.x, transform.position.y)).magnitude < range)
+            if ((startPos - new Vector2(transform.position.x, transform.position.y)).magnitude < weaponData.range)
             {
-                rb.velocity = Dir * weaponSpeed;
+                rb.velocity = Dir * weaponData.weaponSpeed;
             }
             else
             {
                 gameObject.SetActive(false);
             }
+        }
+    }
+
+    public IEnumerator Fire()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1/weaponData.fireRate);
         }
     }
 }
