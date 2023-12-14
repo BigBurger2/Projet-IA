@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
     {
         input.Enable();
         input.Player.Shoot.performed += ctx => OnShoot();
+        input.Player.Shoot.canceled += ctx => OnStopShoot();
         //input.Player.Move.performed += ctx => PlayerMove(ctx);
         //input.Player.Move.canceled += ctx => OnStop(ctx);
 
@@ -29,6 +30,7 @@ public class InputManager : MonoBehaviour
     {
         input.Disable();
         input.Player.Shoot.performed -= ctx => OnShoot();
+        input.Player.Shoot.canceled -= ctx => OnStopShoot();
 
         //input.Player.Move.performed -= ctx => PlayerMove(ctx);
         //input.Player.Move.canceled -= ctx => OnStop(ctx);
@@ -50,5 +52,10 @@ public class InputManager : MonoBehaviour
     public void OnShoot()
     {
         shoot.Action();
+    }
+
+    public void OnStopShoot()
+    {
+        shoot.Stop();
     }
 }
