@@ -31,6 +31,10 @@ public class WeaponsManager : MonoBehaviour
     {
         actualWeapons = new Dictionary<GameObject, WeaponList>();
         modifiedWeapons = new Dictionary<GameObject, WeaponList>();
+    }
+
+    private void Start()
+    {
         InitAllWeapons();
     }
 
@@ -82,19 +86,6 @@ public class WeaponsManager : MonoBehaviour
 
     public void Launch()
     {
-        /*Transform temp = transform.GetChild(index);
-        temp.position = Player.position;
-        Weapon weaponMove = temp.GetComponent<Weapon>();
-
-        //weaponMove.SetTarget(new Vector2(Player.position.x, Player.position.y) + playerController.vectorDir.normalized * weaponMove.range);
-        weaponMove.startPos = Player.position;
-        weaponMove.Dir = (new Vector2(Player.position.x, Player.position.y) + playerController.vectorDir.normalized - new Vector2(temp.position.x, temp.position.y)).normalized;
-        temp.gameObject.SetActive(true);
-        weaponMove.fired = true;
-
-        index++;
-        index %= nbChild;*/
-
         modifiedWeapons = new Dictionary<GameObject, WeaponList>(actualWeapons);
         foreach (var weaponList in actualWeapons)
         {
