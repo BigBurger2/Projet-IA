@@ -16,10 +16,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool savage;
     [SerializeField] public GameObject player;
 
+    public float speed ;
+    public float fleeSpeed ;
+    public float FoloowSpeed ;
+    public float FollowDistance = 10f;
+    public float FleeDistance = 10f;
+
+
     private Vector3 destination;
     private float distance;
     private int nextPoint;
-    public float speed = 10f;
     public Vector3[] Pattern
     {
         get { return pattern; }
@@ -28,6 +34,8 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        if (player == null) { player = GameObject.FindGameObjectWithTag("Player"); }
+
         rb = GetComponent<Rigidbody2D>();
         rbP = player.GetComponent<Rigidbody2D>();
 
@@ -40,8 +48,6 @@ public class Enemy : MonoBehaviour
 
     public void OnDrawGizmos()
     {
-
-
         if (patternOn)
         {
             for (int i = 0; i < pattern.Length; i++)
@@ -52,41 +58,56 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-        if (patternOn)
+        if (patternOn) FollowPattern();
+        if (agressive) FollowPlayer();
+        else if (savage) FleePlayer();
+
+        //else rb.velocity = new Vector2(0, 0);
+    }
+
+    void FollowPattern()
+    {
+        distance = Vector2.Distance(transform.position, pattern[nextPoint]);
+        destination = pattern[nextPoint] - transform.position;
+
+        if (distance < 2f)
         {
-
-            if (distance < 2f)
-            {
-                nextPoint++;
-
-                if (nextPoint == pattern.Length) nextPoint = 0;
-
-                destination = pattern[nextPoint] - transform.position;
-            }
-            distance = Vector2.Distance(transform.position, pattern[nextPoint]);
-            rb.velocity = destination.normalized * speed;
-
-
+            nextPoint++;
+            if (nextPoint == pattern.Length) nextPoint = 0;
         }
-        else if (agressive)
+
+        rb.velocity = destination.normalized * speed;
+    }
+
+    void FollowPlayer()
+    {
+        distance = Vector2.Distance(transform.position, rbP.position);
+
+        if (distance < FollowDistance)
         {
             destination = rbP.position - (Vector2)transform.position;
             rb.velocity = destination.normalized * speed;
         }
-        else if (savage)
-        {
-            distance = Vector2.Distance(transform.position, player.transform.position);
+        else destination = pattern[nextPoint] - transform.position;
+    }
 
-            if (distance < 10f)
-            {
-                destination = player.transform.position - transform.position;
-                rb.velocity = destination.normalized * speed * -1;
-            }
-            else rb.velocity = new Vector2(0, 0);
+    void FleePlayer()
+    {
+        distance = Vector2.Distance(transform.position, player.transform.position);
+
+        if (distance < FleeDistance)
+        {
+            destination = player.transform.position - transform.position;
+            rb.velocity = destination.normalized * speed * -1;
         }
-        else rb.velocity = new Vector2(0, 0);
+        else destination = pattern[nextPoint] - transform.position;
+    }
+
+    void Update()
+    {
+
     }
 
     public void newEnemy(Enemy Enemy, int nbrEnemy)

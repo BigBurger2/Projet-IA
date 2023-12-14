@@ -8,7 +8,6 @@ public class PatternEditor : Editor
 
     protected virtual void OnSceneGUI()
     {
-
         Enemy Enemy = (Enemy)target;
         EditorGUI.BeginChangeCheck();
         if (Enemy.patternOn)
