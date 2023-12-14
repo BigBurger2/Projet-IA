@@ -12,8 +12,8 @@ public abstract class Node : ScriptableObject
     }
 
     public State state = State.Running;
-    public bool started; 
-
+    public bool started;
+    public string guid; 
     public State Update()
     {
         if (!started)
