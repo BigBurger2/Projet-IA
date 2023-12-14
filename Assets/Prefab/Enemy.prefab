@@ -99,14 +99,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pattern:
-  - {x: -1.3602057, y: -1.631558, z: 0}
-  - {x: 0.9876528, y: -0.47691107, z: 0}
-  - {x: -2.1208344, y: -1.3075652, z: 0}
-  - {x: 7.1505504, y: -3.794568, z: 0}
+  - {x: 32.073997, y: 7.0552464, z: 0}
+  - {x: 2.9942436, y: 9.111612, z: 0}
+  - {x: 47.85569, y: -4.103836, z: 0}
+  - {x: -29.175962, y: -9.897049, z: 0}
+  - {x: -10.703533, y: 8.840984, z: 0}
   patternOn: 1
   agressive: 0
-  savage: 0
+  savage: 1
   player: {fileID: 0}
+  speed: 10
+  fleeSpeed: 10
+  FoloowSpeed: 0
+  FollowDistance: 10
+  FleeDistance: 5
 --- !u!50 &2403601360185215803
 Rigidbody2D:
   serializedVersion: 4

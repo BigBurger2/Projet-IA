@@ -125,7 +125,7 @@ public class Enemy : MonoBehaviour
         pattern = new Vector3[path];
         for (int j = 0; j < path; j++)
         {
-            Pattern[j] = new Vector3(Random.Range(-10f, 10f), Random.Range(-4f, 4f), 0);
+            Pattern[j] = new Vector3(Random.Range(-50f, 50f), Random.Range(-10f, 10f), 0);
             patternOn = true;
         }
     }
