@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Riffle
   description: "Un riffle de qualit\xE9 brow"
+  dammage: 8
   weaponSpeed: 15
   range: 8
   fireRate: 5

@@ -42,7 +42,8 @@ public class WeaponsManager : MonoBehaviour
             Weapon wp = weaponPrefab.GetComponent<Weapon>();
             wp.weaponData = data;
             // Create the parent object
-            GameObject parent = Instantiate(new GameObject(data.weaponName), transform);
+            GameObject parent = new GameObject(data.weaponName);
+            parent.transform.parent = transform;
 
             // Associe une instance de coroutine à la weapon afin de gérer son fireRate
             WeaponList tmpWpList = new WeaponList();
