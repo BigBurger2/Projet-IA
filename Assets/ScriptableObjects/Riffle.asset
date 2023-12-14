@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931f2a108f840754ca5fd0cbb717de8c, type: 3}
   m_Name: Riffle
   m_EditorClassIdentifier: 
-  weaponName: 
-  description: 
+  weaponName: Riffle
+  description: "Un riffle de qualit\xE9 brow"
   weaponSpeed: 15
   range: 8
   fireRate: 5
