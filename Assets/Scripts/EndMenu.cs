@@ -7,11 +7,11 @@ public class EndMenu : MonoBehaviour
 {
     public void BackToMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetSceneAt(0).ToString());
+        SceneManager.LoadScene(0);
     }
 
     public void TryAgain()
     {
-        SceneManager.LoadScene(SceneManager.GetSceneAt(1).ToString());
+        SceneManager.LoadScene(1);
     }
 }
