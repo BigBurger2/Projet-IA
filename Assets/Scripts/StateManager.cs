@@ -13,9 +13,9 @@ public class StateManager : MonoBehaviour
 
     private void RunStateMachine()
     {
-        State nextState = currentState?.RunCurrentState();
+        State nextState = currentState?.Do();
 
-        if (nextState != null)
+        if (nextState != currentState)
         {
             //Switch to the next state
             SwitchToTheNextState(nextState);
@@ -24,6 +24,8 @@ public class StateManager : MonoBehaviour
 
     private void SwitchToTheNextState(State nextState)
     {
-        currentState = nextState; 
+        currentState.OnStop();
+        currentState = nextState;
+        nextState.OnStart();
     }   
 }

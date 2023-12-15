@@ -7,7 +7,17 @@ public class IdleState : State
     public bool canSeeThePlayer;
     public ChaseState chaseState;
 
-    public override State RunCurrentState()
+    public override void OnStart()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnStop()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override State Do()
     {
         if(canSeeThePlayer)
         {
