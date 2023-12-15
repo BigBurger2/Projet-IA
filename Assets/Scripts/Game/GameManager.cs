@@ -32,15 +32,18 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync(0);
         Time.timeScale = 0;
 
-
     }
 
     public void NextLevel()
     {
         SceneManager.LoadSceneAsync(2);
         Time.timeScale = 1;
+    }
 
-
+    public void RestartGame()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 
 }

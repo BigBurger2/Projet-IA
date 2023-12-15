@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    int point = 0;
-    int live = 3;
-    int lvl = 0;
+    public int point = 0;
+    public int live = 3;
+    public int lvl = 0;
 
     void Start()
     {
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     {
         if (live == 0)
         {
-            //Game over
+            
         }
     }
 

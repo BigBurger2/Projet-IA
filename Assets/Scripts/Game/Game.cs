@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-    public GameObject menuPause;
+    public GameObject nextLevelCanva;
+    public GameObject gameOverCanva;
+    public TMPro.TextMeshPro pointText;
 
+    [SerializeField] Player player;
+ 
     bool pause = false;
     int enemyNbr;
 
@@ -19,16 +23,23 @@ public class Game : MonoBehaviour
     {
         if (enemyNbr == 0)
         {
-            //panneau lvl suivant
+            nextLevelCanva.SetActive(true);
+            DisplayPoint();
         }
+
+        if (player.live == 0) 
+        {
+            //display canva game over
+            DisplayPoint();
+        } 
     }
 
-    private void RestartGame()
+    
+
+    private void DisplayPoint()
     {
-
+        pointText.text = player.point.ToString();
     }
-
-   
 
 
 }
