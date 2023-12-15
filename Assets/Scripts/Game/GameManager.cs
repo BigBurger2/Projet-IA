@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void LunchGame()
+    public void LaunchGame()
     {
         SceneManager.LoadSceneAsync(1);
         Time.timeScale = 1;
