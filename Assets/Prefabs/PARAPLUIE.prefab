@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 7928575956162417889}
   - component: {fileID: 2180113637302602962}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: PARAPLUIE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
