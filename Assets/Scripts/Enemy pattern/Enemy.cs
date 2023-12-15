@@ -16,16 +16,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool savage;
     [SerializeField] public GameObject player;
 
-    public float speed ;
-    public float fleeSpeed ;
-    public float FoloowSpeed ;
-    public float FollowDistance = 10f;
-    public float FleeDistance = 10f;
-
+    public float speed;
+    public float fleeSpeed;
+    public float followSpeed;
+    public float followDistance = 10f;
+    public float fleeDistance = 10f;
+    bool flee = false;
 
     private Vector3 destination;
     private float distance;
     private int nextPoint;
+
     public Vector3[] Pattern
     {
         get { return pattern; }
@@ -85,24 +86,28 @@ public class Enemy : MonoBehaviour
     {
         distance = Vector2.Distance(transform.position, rbP.position);
 
-        if (distance < FollowDistance)
+        if (distance < fleeDistance)
         {
-            destination = rbP.position - (Vector2)transform.position;
-            rb.velocity = destination.normalized * speed;
+
+            destination = player.transform.position - transform.position;
+            rb.velocity = destination.normalized * followSpeed;
         }
         else destination = pattern[nextPoint] - transform.position;
+
     }
 
     void FleePlayer()
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
 
-        if (distance < FleeDistance)
+        if (distance < fleeDistance) flee = true;
+        if (flee)
         {
-            destination = player.transform.position - transform.position;
-            rb.velocity = destination.normalized * speed * -1;
+            destination = rbP.position - (Vector2)transform.position;
+            rb.velocity = destination.normalized * fleeSpeed * -1;
         }
         else destination = pattern[nextPoint] - transform.position;
+        if (distance > fleeDistance * 2) flee = false;
     }
 
     void Update()
