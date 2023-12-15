@@ -8,11 +8,6 @@ public class Shoot : MonoBehaviour
     public WeaponsManager WM;
     public CustomInput input;
 
-    private Rigidbody2D[] allWeaponsRb;
-
-    private int nbChild;
-    private int index;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +24,10 @@ public class Shoot : MonoBehaviour
     public void Action()
     {
         WM.Launch();
+    }
+
+    public void Stop()
+    {
+        WM.Stop();
     }
 }
