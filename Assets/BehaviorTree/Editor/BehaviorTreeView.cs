@@ -64,7 +64,7 @@ public class BehaviorTreeView : GraphView
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChanged;
 
-        if (tree.rootNode == null){}
+        if (tree.rootNode == null)
         {
             tree.rootNode = tree.CreateNode(typeof(RootNode)) as RootNode;
             EditorUtility.SetDirty(tree);
