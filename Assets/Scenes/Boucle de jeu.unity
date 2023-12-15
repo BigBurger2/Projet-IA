@@ -30311,14 +30311,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4ce75150d1a454b814af8606d810f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSpeed: 26.4
   targetPos: {x: 0, y: 0}
   startPos: {x: 0, y: 0}
-  fired: 0
-  rb: {fileID: 299996775}
   Dir: {x: 0, y: 0}
-  range: 10
-  target: {fileID: 0}
+  rb: {fileID: 299996775}
+  weaponData: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!61 &299996774
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30687,14 +30685,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4ce75150d1a454b814af8606d810f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSpeed: 26.4
   targetPos: {x: 0, y: 0}
   startPos: {x: 0, y: 0}
-  fired: 0
-  rb: {fileID: 454775519}
   Dir: {x: 0, y: 0}
-  range: 10
-  target: {fileID: 0}
+  rb: {fileID: 454775519}
+  weaponData: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!61 &454775518
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31054,14 +31050,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4ce75150d1a454b814af8606d810f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSpeed: 26.4
   targetPos: {x: 0, y: 0}
   startPos: {x: 0, y: 0}
-  fired: 0
-  rb: {fileID: 540722699}
   Dir: {x: 0, y: 0}
-  range: 10
-  target: {fileID: 0}
+  rb: {fileID: 540722699}
+  weaponData: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!61 &540722698
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31602,14 +31596,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4ce75150d1a454b814af8606d810f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSpeed: 26.4
   targetPos: {x: 0, y: 0}
   startPos: {x: 0, y: 0}
-  fired: 0
-  rb: {fileID: 688154506}
   Dir: {x: 0, y: 0}
-  range: 10
-  target: {fileID: 0}
+  rb: {fileID: 688154506}
+  weaponData: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!1 &801178830
 GameObject:
   m_ObjectHideFlags: 0
@@ -39911,6 +39903,8 @@ MonoBehaviour:
   Target: {fileID: 0}
   Player: {fileID: 1341899896}
   playerController: {fileID: 1825248926}
+  weaponPrefab: {fileID: 3830470635086441469, guid: 02d70a9452b4a0d40a49810dceb62d24, type: 3}
+  weaponDatas: []
 --- !u!1 &1112611925
 GameObject:
   m_ObjectHideFlags: 0
@@ -40251,14 +40245,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4ce75150d1a454b814af8606d810f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSpeed: 26.4
   targetPos: {x: 0, y: 0}
   startPos: {x: 0, y: 0}
-  fired: 0
-  rb: {fileID: 1278054556}
   Dir: {x: 0, y: 0}
-  range: 10
-  target: {fileID: 0}
+  rb: {fileID: 1278054556}
+  weaponData: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!61 &1278054555
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40930,14 +40922,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4ce75150d1a454b814af8606d810f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSpeed: 26.4
   targetPos: {x: 0, y: 0}
   startPos: {x: 0, y: 0}
-  fired: 0
-  rb: {fileID: 1390300169}
   Dir: {x: 0, y: 0}
-  range: 10
-  target: {fileID: 0}
+  rb: {fileID: 1390300169}
+  weaponData: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!61 &1390300168
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42019,14 +42009,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4ce75150d1a454b814af8606d810f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSpeed: 26.4
   targetPos: {x: 0, y: 0}
   startPos: {x: 0, y: 0}
-  fired: 0
-  rb: {fileID: 1893378523}
   Dir: {x: 0, y: 0}
-  range: 10
-  target: {fileID: 0}
+  rb: {fileID: 1893378523}
+  weaponData: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!61 &1893378522
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -99,15 +99,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pattern:
-  - {x: 32.073997, y: 7.0552464, z: 0}
-  - {x: 2.9942436, y: 9.111612, z: 0}
-  - {x: 47.85569, y: -4.103836, z: 0}
-  - {x: -29.175962, y: -9.897049, z: 0}
-  - {x: -10.703533, y: 8.840984, z: 0}
-  patternOn: 1
-  agressive: 0
-  savage: 1
-  player: {fileID: 0}
+  - {x: 27.17223, y: 5.031168, z: 0}
+  - {x: -9.510273, y: 9.919426, z: 0}
+  - {x: 38.783848, y: 5.298679, z: 0}
+  patternOn: 0
+  agressive: 1
+  savage: 0
+  player: {fileID: 5434341257547273464, guid: c551033cdff4e6b448c72ccd5f155a04, type: 3}
   speed: 10
   fleeSpeed: 10
   FoloowSpeed: 0
