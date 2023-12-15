@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu]
 public class BehaviorTree : ScriptableObject
@@ -19,6 +21,7 @@ public class BehaviorTree : ScriptableObject
         return treeState;
     }
 
+#if UNITY_EDITOR
     public Node CreateNode(System.Type type)
     {
         Node node = ScriptableObject.CreateInstance(type) as Node;
@@ -39,6 +42,7 @@ public class BehaviorTree : ScriptableObject
         AssetDatabase.RemoveObjectFromAsset(node);
         AssetDatabase.SaveAssets();
     }
+#endif
 
     public void AddChild(Node parent, Node child)
     {
