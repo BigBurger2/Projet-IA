@@ -64,7 +64,7 @@ public class WeaponsManager : MonoBehaviour
             tmpWpList.index = 0;
             tmpWpList.TimeReload = 1 / data.fireRate;
             tmpWpList.LastTimeStopShoot = 0;
-            tmpWpList.fired = false;
+            tmpWpList.fired = true;
             
 
             // Calc nb weapon
