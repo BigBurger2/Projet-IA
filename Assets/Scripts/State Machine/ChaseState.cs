@@ -7,17 +7,17 @@ public class ChaseState : State
     public AttackState attackState;
     public bool isInAttackRange;
 
-    public override void OnStart()
-    {
-        throw new System.NotImplementedException();
-    }
+    //public override void OnStart()
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 
-    public override void OnStop()
-    {
-        throw new System.NotImplementedException();
-    }
+    //public override void OnStop()
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 
-    public override State Do()
+    public override State RunCurrentState() //Do()
     {
         if(isInAttackRange)
         {
