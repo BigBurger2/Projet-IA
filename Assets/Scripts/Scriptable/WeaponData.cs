@@ -10,7 +10,7 @@ public class WeaponData : ScriptableObject
     public string description;
 
     [Range(0f, 100f)]
-    public float dammage;
+    public int dammage;
     [Range(1f, 50f)]
     public float weaponSpeed;
     [Range(1, 50)]
