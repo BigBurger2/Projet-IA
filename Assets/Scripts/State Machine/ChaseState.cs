@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChaseState : State
 {
+    public IdleState idleState;
     public AttackState attackState;
     public bool isInAttackRange;
 
@@ -22,6 +23,10 @@ public class ChaseState : State
         if(isInAttackRange)
         {
             return attackState;
+        }
+        if (!idleState.canSeeThePlayer)
+        {
+            return idleState;
         }
         else
         {

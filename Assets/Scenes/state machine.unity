@@ -37770,6 +37770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd63eed5e0df5b4db3683db21d78c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleState: {fileID: 2020896273}
+  chaseState: {fileID: 1901717355}
 --- !u!4 &1096697685
 Transform:
   m_ObjectHideFlags: 0
@@ -39641,6 +39643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53379769a4acd6e49b703e9a32a110cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleState: {fileID: 2020896273}
   attackState: {fileID: 1096697684}
   isInAttackRange: 0
 --- !u!4 &1901717356
