@@ -5,6 +5,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using System.IO;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool agressive;
     [SerializeField] private bool savage;
     [SerializeField] public GameObject player;
+    [SerializeField] private NavMeshAgent agent;
 
     public float speed;
     public float fleeSpeed;
@@ -88,7 +90,7 @@ public class Enemy : MonoBehaviour
 
         if (distance < fleeDistance)
         {
-
+            //agent.SetDestination(rbP.position);
             destination = player.transform.position - transform.position;
             rb.velocity = destination.normalized * followSpeed;
         }

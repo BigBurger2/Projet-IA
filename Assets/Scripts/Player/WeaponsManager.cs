@@ -26,9 +26,13 @@ public class WeaponsManager : MonoBehaviour
     private GameObject weaponPrefab;
     [SerializeField]
     private List<WeaponData> weaponDatas;
+    [SerializeField]
+    private InputManager InputManager;
 
     private Dictionary<GameObject, WeaponList> actualWeapons;
     private Dictionary<GameObject, WeaponList> modifiedWeapons;
+
+    private Vector2 lastClickMouse;
 
 
     //private int index = 0;
@@ -98,6 +102,7 @@ public class WeaponsManager : MonoBehaviour
     public void Launch()
     {
         modifiedWeapons = new Dictionary<GameObject, WeaponList>(actualWeapons);
+
         foreach (var weaponList in actualWeapons)
         {
             StartCoroutine(weaponList.Value.Coroutine);
@@ -134,11 +139,12 @@ public class WeaponsManager : MonoBehaviour
             if (wpList.fired)
             {
                 //Debug.Log(parent.name + " : " + wpList.index + " : " + wpList.nbWeapons);
+                lastClickMouse = Camera.main.ScreenToWorldPoint(InputManager.input.Player.MousePosition.ReadValue<Vector2>());
 
                 Transform temp = parent.transform.GetChild(wpList.index);
                 temp.position = Player.position;
 
-                wpList.weapons[wpList.index].Fire(playerController.vectorDir);
+                wpList.weapons[wpList.index].Fire(lastClickMouse - new Vector2(temp.position.x, temp.position.y));
 
 
                 wpList.index++;

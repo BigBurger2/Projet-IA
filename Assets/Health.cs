@@ -1,13 +1,21 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/*enum Tags
+{
+    Weapon,
+    EnnemyWeapon
+}*/
 public class Health : MonoBehaviour
 {
     [SerializeField]
     [Range(1, 500)]
     private int HP;
     [SerializeField]
+    [TagField]
     private string weaponTag;
     [SerializeField]
     private GameObject destroyOnDeath;
