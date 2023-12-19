@@ -30312,7 +30312,67 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &450442668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450442663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 268ad0097902eee41a0c105f01b4d3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
+  weaponTag: Weapon
+  destroyOnDeath: {fileID: 450442663}
+--- !u!61 &450442672
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450442663}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 20eef8540a27aca4c9dfb896fc29662e, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 0.5}
+    newSize: {x: 1, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.5}
+  m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -42355,6 +42415,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6551302615168523445, guid: 5e021cd1b795c2c48b7f6060b9605169, type: 3}
       insertIndex: -1
       addedObject: {fileID: 450442667}
+    - targetCorrespondingSourceObject: {fileID: 6551302615168523445, guid: 5e021cd1b795c2c48b7f6060b9605169, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 450442668}
+    - targetCorrespondingSourceObject: {fileID: 6551302615168523445, guid: 5e021cd1b795c2c48b7f6060b9605169, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 450442672}
   m_SourcePrefab: {fileID: 100100000, guid: 5e021cd1b795c2c48b7f6060b9605169, type: 3}
 --- !u!1001 &3940207064772372584
 PrefabInstance:

@@ -30,7 +30,7 @@ public class Health : MonoBehaviour
         if (collision.tag == weaponTag)
         {
             TakeDammage(collision.GetComponent<Weapon>().weaponData.dammage);
-            Debug.Log(HP);
+            collision.gameObject.SetActive(false);
         }
     }
 
