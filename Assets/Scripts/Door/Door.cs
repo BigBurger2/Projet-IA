@@ -7,6 +7,7 @@ public class Door : MonoBehaviour
 {
 
     [SerializeField] GameObject doors;
+    [SerializeField] Enemy enemy;
 
     void Start()
     {
@@ -20,8 +21,17 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        doors.SetActive(true);
+        if (collision.tag == "Player")
+        {
+            doors.SetActive(true);
+            if (enemy != null) enemy.Agressive = true;
+        }
         
+    }
+
+    public void OppenTheDoor()
+    {
+        doors.SetActive(false);
     }
 
 }

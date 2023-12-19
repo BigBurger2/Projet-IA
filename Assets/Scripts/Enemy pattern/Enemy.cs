@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
         set { pattern = value; }
     }
 
+    public bool Agressive { get => agressive; set => agressive = value; }
+
     void Start()
     {
         if (player == null) { player = GameObject.FindGameObjectWithTag("Player"); }
