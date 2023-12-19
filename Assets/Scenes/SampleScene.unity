@@ -227,7 +227,7 @@ Transform:
   m_GameObject: {fileID: 32953235}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31253,11 +31253,11 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8443236493113843574}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -31267,7 +31267,7 @@ NavMeshAgent:
   m_Height: 0.5
   m_BaseOffset: 0.25
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 3
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -41142,7 +41142,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.06666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 907404ff4aa63174582fb1387be9dd28, type: 2}
   m_BuildHeightMesh: 0
@@ -43275,7 +43275,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
-  weaponTag: Weapon
+  weaponTag:
+  - Weapon
   destroyOnDeath: {fileID: 8443236493113843574}
 --- !u!4 &2098741104758044466
 Transform:
@@ -43286,7 +43287,7 @@ Transform:
   m_GameObject: {fileID: 8443236493113843574}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.69, y: -2.25, z: 0}
+  m_LocalPosition: {x: -2.4, y: -2.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43353,33 +43354,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c551033cdff4e6b448c72ccd5f155a04, type: 3}
---- !u!50 &4652053760098163240
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8443236493113843574}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &7092783977101086961
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43438,19 +43412,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pattern:
-  - {x: -14.500937, y: -0.8686471, z: 0}
+  - {x: -10.144773, y: -0.663651, z: 0}
   - {x: -4.234436, y: -0.72455335, z: 0}
   - {x: -1.6634507, y: -8.607912, z: 0}
-  - {x: -11.985691, y: -9.427425, z: 0}
+  - {x: -11.575697, y: -9.6324215, z: 0}
   patternOn: 1
-  agressive: 0
+  agressive: 1
   savage: 0
   player: {fileID: 1341899895}
   agent: {fileID: 450442673}
   speed: 6
   fleeSpeed: 10
-  followSpeed: 0
-  followDistance: 10
+  followSpeed: 10
+  followDistance: 5
+  followDistanceCancel: 10
   fleeDistance: 10
 --- !u!114 &8086770794038133831
 MonoBehaviour:
@@ -43493,7 +43468,6 @@ GameObject:
   - component: {fileID: 2098741104758044466}
   - component: {fileID: 8474642060858840923}
   - component: {fileID: 7358880805739398308}
-  - component: {fileID: 4652053760098163240}
   - component: {fileID: 1317165303649633222}
   - component: {fileID: 7092783977101086961}
   - component: {fileID: 450442673}

@@ -9,6 +9,7 @@ using UnityEngine;
     Weapon,
     EnnemyWeapon
 }*/
+[RequireComponent(typeof(BoxCollider2D))]
 public class Health : MonoBehaviour
 {
     [SerializeField]
@@ -16,7 +17,7 @@ public class Health : MonoBehaviour
     private int HP;
     [SerializeField]
     [TagField]
-    private string weaponTag;
+    private List<string> weaponTag;
     [SerializeField]
     private GameObject destroyOnDeath;
 
@@ -35,7 +36,7 @@ public class Health : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == weaponTag)
+        if (weaponTag.Contains(collision.tag))
         {
             TakeDammage(collision.GetComponent<Weapon>().weaponData.dammage);
             collision.gameObject.SetActive(false);

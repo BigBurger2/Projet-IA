@@ -10,7 +10,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     private Rigidbody2D rbP;
-    private Rigidbody2D rb;
+    //private Rigidbody2D rb;
     [SerializeField] private Vector3[] pattern;
     [SerializeField] public bool patternOn;
     [SerializeField] private bool agressive;
@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     public float fleeSpeed;
     public float followSpeed;
     public float followDistance = 10f;
+    public float followDistanceCancel = 10f;
     public float fleeDistance = 10f;
     bool flee = false;
 
@@ -35,18 +36,28 @@ public class Enemy : MonoBehaviour
         set { pattern = value; }
     }
 
+    private void Awake()
+    {
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+    }
+
     void Start()
     {
         if (player == null) { player = GameObject.FindGameObjectWithTag("Player"); }
 
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
         rbP = player.GetComponent<Rigidbody2D>();
 
         nextPoint = 1;
         transform.position = pattern[0];
-        destination = pattern[nextPoint] - transform.position;
-        distance = Vector2.Distance(transform.position, pattern[nextPoint]);
-        rb.velocity = destination.normalized * speed;
+        /*destination = pattern[nextPoint] - transform.position;
+        distance = Vector2.Distance(transform.position, pattern[nextPoint]);*/
+        //rb.velocity = destination.normalized * speed;
+
+        agent.SetDestination(pattern[nextPoint]);
+        agent.speed = speed;
+
     }
 
     public void OnDrawGizmos()
@@ -73,7 +84,11 @@ public class Enemy : MonoBehaviour
     void FollowPattern()
     {
         distance = Vector2.Distance(transform.position, pattern[nextPoint]);
-        destination = pattern[nextPoint] - transform.position;
+        /*destination = pattern[nextPoint] - transform.position;*/
+
+
+        agent.SetDestination(pattern[nextPoint]);
+        agent.speed = speed;
 
         if (distance < 2f)
         {
@@ -81,20 +96,25 @@ public class Enemy : MonoBehaviour
             if (nextPoint == pattern.Length) nextPoint = 0;
         }
 
-        rb.velocity = destination.normalized * speed;
+/*
+        rb.velocity = destination.normalized * speed;*/
+
+
     }
 
     void FollowPlayer()
     {
         distance = Vector2.Distance(transform.position, rbP.position);
 
-        if (distance < fleeDistance)
+        if (distance < followDistance)
         {
-            //agent.SetDestination(rbP.position);
-            destination = player.transform.position - transform.position;
-            rb.velocity = destination.normalized * followSpeed;
+            agent.SetDestination(rbP.position);
+            agent.speed = followDistance;
+
+            /*destination = player.transform.position - transform.position;
+            rb.velocity = destination.normalized * followSpeed;*/
         }
-        else destination = pattern[nextPoint] - transform.position;
+        //else destination = pattern[nextPoint] - transform.position;
 
     }
 
@@ -106,7 +126,7 @@ public class Enemy : MonoBehaviour
         if (flee)
         {
             destination = rbP.position - (Vector2)transform.position;
-            rb.velocity = destination.normalized * fleeSpeed * -1;
+            //rb.velocity = destination.normalized * fleeSpeed * -1;
         }
         else destination = pattern[nextPoint] - transform.position;
         if (distance > fleeDistance * 2) flee = false;
