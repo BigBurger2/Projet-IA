@@ -7,7 +7,7 @@ public class Door : MonoBehaviour
 {
 
     [SerializeField] GameObject doors;
-    [SerializeField] Enemy enemy;
+    [SerializeField] List<Enemy> enemy;
 
     void Start()
     {
@@ -16,7 +16,7 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        
+        if (enemy.Count == 0) OppenTheDoor();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,14 +24,43 @@ public class Door : MonoBehaviour
         if (collision.tag == "Player")
         {
             doors.SetActive(true);
-            if (enemy != null) enemy.Agressive = true;
+            if (enemy != null)
+            {
+                foreach (var ennemie in enemy)
+                {
+                    ennemie.Agressive = true;
+                    
+                }
+            }
         }
         
     }
 
-    public void OppenTheDoor()
+    private void OppenTheDoor()
     {
         doors.SetActive(false);
+    }
+
+    private void RemoveEnemy(Enemy ennemie)
+    {
+        enemy.Remove(ennemie);
+        ennemie.GetComponent<Health>().OnDeath -= RemoveEnemy;
+    }
+
+    private void OnEnable()
+    {
+        foreach(var ennemie in enemy)
+        {
+            ennemie.GetComponent<Health>().OnDeath += RemoveEnemy;
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (var ennemie in enemy)
+        {
+            ennemie.GetComponent<Health>().OnDeath -= RemoveEnemy;
+        }
     }
 
 }
