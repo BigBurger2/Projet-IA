@@ -30148,6 +30148,38 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &292185224 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5434341257547273464, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
+  m_PrefabInstance: {fileID: 538937394}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &292185230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292185224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc280faccee9c74baffcc49fbeabeb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 1
+--- !u!114 &292185231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292185224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a885cddc32ea7498d85cb562b38687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  overhealAllowed: 0
 --- !u!1 &420638538
 GameObject:
   m_ObjectHideFlags: 0
@@ -30501,6 +30533,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2407879799985815938, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407879799985815938, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407879799985815938, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407879799985815938, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407879799985815938, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3321921527269510779, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
       propertyPath: m_Controller
       value: 
@@ -30509,10 +30561,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss_1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7349333614548608680, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7349333614548608680, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6584621840096471933, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
+    - {fileID: 8827832772856336062, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5434341257547273464, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 292185231}
+    - targetCorrespondingSourceObject: {fileID: 5434341257547273464, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 292185230}
   m_SourcePrefab: {fileID: 100100000, guid: 1fd27c445215c0c49a8a02b4bf5e881d, type: 3}
 --- !u!1 &547238070
 GameObject:
