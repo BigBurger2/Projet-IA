@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886fb712214fdd043bc5fd283837ed51, type: 3}
   m_Name: IntroDialogue
   m_EditorClassIdentifier: 
-  dialogueLines:
-  - dialogue: 
+  dialogueLines: []
