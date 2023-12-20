@@ -46468,6 +46468,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3152509590807184106, guid: c551033cdff4e6b448c72ccd5f155a04, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 8086770794038133831}
     - target: {fileID: 5434341257547273464, guid: c551033cdff4e6b448c72ccd5f155a04, type: 3}
       propertyPath: m_Name
       value: Player
@@ -46878,7 +46882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7c777b7adc20748961193cfdf611db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuPause: {fileID: 0}
+  menuPause: {fileID: 133968706}
 --- !u!1 &8429119386010752035
 GameObject:
   m_ObjectHideFlags: 0
