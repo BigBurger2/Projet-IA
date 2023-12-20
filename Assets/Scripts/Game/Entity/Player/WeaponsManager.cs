@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// Structure qui stocke les copies des armes pour l'object pool et la référence à sa coroutine
+// Structure qui stocke les copies des armes pour l'object pool et la rÃ©fÃ©rence Ã  sa coroutine
 struct WeaponList
 {
     public float LastTimeStopShoot;
@@ -27,8 +27,15 @@ public class WeaponsManager : MonoBehaviour
     [SerializeField]
     private List<WeaponData> weaponDatas;
 
+    [SerializeField]
+    private InputManager InputManager;
+
+
     private Dictionary<GameObject, WeaponList> actualWeapons;
     private Dictionary<GameObject, WeaponList> modifiedWeapons;
+
+
+    private Vector2 lastClickMouse;
 
 
     //private int index = 0;
@@ -48,7 +55,7 @@ public class WeaponsManager : MonoBehaviour
 
     public void InitAllWeapons()
     {
-        // Génère les copies nécessaire et associe une instance de coroutine pour chaque arme
+        // GÃ©nÃ¨re les copies nÃ©cessaire et associe une instance de coroutine pour chaque arme
         foreach(var data in weaponDatas)
         {
             Weapon wp = weaponPrefab.GetComponent<Weapon>();
@@ -57,7 +64,7 @@ public class WeaponsManager : MonoBehaviour
             GameObject parent = new GameObject(data.weaponName);
             parent.transform.parent = transform;
 
-            // Associe une instance de coroutine à la weapon afin de gérer son fireRate
+            // Associe une instance de coroutine Ã  la weapon afin de gÃ©rer son fireRate
             WeaponList tmpWpList = new WeaponList();
             tmpWpList.Coroutine = FireCoroutine(parent, data);
             tmpWpList.weapons = new List<Weapon>();
@@ -74,7 +81,7 @@ public class WeaponsManager : MonoBehaviour
 
             int nbWeaponsToStore = Utils.CalcNbProjectiles(range, speed, fireRate);
 
-            // Instantiation de toutes les copies nécessaires
+            // Instantiation de toutes les copies nÃ©cessaires
             for (int i = 0;  i < nbWeaponsToStore; i++)
             {
                 GameObject temp = Instantiate(weaponPrefab, parent.transform);
@@ -135,10 +142,15 @@ public class WeaponsManager : MonoBehaviour
             {
                 //Debug.Log(parent.name + " : " + wpList.index + " : " + wpList.nbWeapons);
 
+                lastClickMouse = Camera.main.ScreenToWorldPoint(InputManager.input.Player.MousePosition.ReadValue<Vector2>());
+
+
                 Transform temp = parent.transform.GetChild(wpList.index);
                 temp.position = Player.position;
 
-                wpList.weapons[wpList.index].Fire(playerController.vectorDir);
+
+                wpList.weapons[wpList.index].Fire(lastClickMouse - new Vector2(temp.position.x, temp.position.y));
+
 
 
                 wpList.index++;
