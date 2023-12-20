@@ -10,6 +10,7 @@ public class BasicEnemy : Entity
         //animator death 
         //Drop Loot
         Debug.Log("DID YOU JUST KILL THIS WABBIT");
+        CallEvent();
         Destroy(gameObject);
     }
 }

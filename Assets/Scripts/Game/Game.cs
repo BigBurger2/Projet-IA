@@ -9,8 +9,8 @@ public class Game : MonoBehaviour
     public GameObject WinCanva;
 
     [SerializeField] Player player;
-    [SerializeField] List<Enemy> enemyRoom1;
-    [SerializeField] List<Enemy> enemyRoom2;
+    [SerializeField] List<Entity> enemyRoom1;
+    [SerializeField] List<Entity> enemyRoom2;
     [SerializeField] Door Room1;
     [SerializeField] Door Room2;
 
@@ -41,24 +41,24 @@ public class Game : MonoBehaviour
         } 
     }
 
-    private void RemoveEnemy(Enemy ennemie)
+    private void RemoveEnemy(Entity ennemie)
     {
         if(Room1.Active) enemyRoom1.Remove(ennemie);
         if(Room2.Active) enemyRoom2.Remove(ennemie);
 
-        ennemie.GetComponent<Health>().OnDeath -= RemoveEnemy;
+        ennemie.OnDeathEvent -= RemoveEnemy;
     }
 
     private void OnEnable()
     {
         foreach (var ennemie in enemyRoom1)
         {
-            ennemie.GetComponent<Health>().OnDeath += RemoveEnemy;
+            ennemie.OnDeathEvent += RemoveEnemy;
         }
 
         foreach (var ennemie in enemyRoom2)
         {
-            ennemie.GetComponent<Health>().OnDeath += RemoveEnemy;
+            ennemie.OnDeathEvent += RemoveEnemy;
         }
     }
 
@@ -66,12 +66,12 @@ public class Game : MonoBehaviour
     {
         foreach (var ennemie in enemyRoom1)
         {
-            ennemie.GetComponent<Health>().OnDeath -= RemoveEnemy;
+            ennemie.OnDeathEvent -= RemoveEnemy;
         }
 
         foreach (var ennemie in enemyRoom2)
         {
-            ennemie.GetComponent<Health>().OnDeath -= RemoveEnemy;
+            ennemie.OnDeathEvent -= RemoveEnemy;
         }
     }
 

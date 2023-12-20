@@ -10,10 +10,6 @@ using UnityEngine;
 public class ProjectileHurt : MonoBehaviour
 {
 
-    #region Events
-    public event System.Action<Enemy> OnDeath;
-    #endregion
-
     private HpComponent hpComponent;
     
     [SerializeField] private TeamTag team; 
