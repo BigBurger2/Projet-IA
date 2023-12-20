@@ -21,9 +21,11 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
+
     [SerializeField]
     private TeamTag source;
     
+
     // Start is called before the first frame update
     void Start()
     {

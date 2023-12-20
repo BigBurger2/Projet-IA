@@ -207,5 +207,5 @@ MonoBehaviour:
   startPos: {x: 0, y: 0}
   Dir: {x: 0, y: 0}
   rb: {fileID: 3263280359267614181}
-  weaponData: {fileID: 11400000, guid: 2966d0ec7ebcde14595265952a4aeaef, type: 2}
+  weaponData: {fileID: 11400000, guid: 4b235a87e57221441b7f424d7dd737fd, type: 2}
   spriteRenderer: {fileID: 6821487038558535913}
