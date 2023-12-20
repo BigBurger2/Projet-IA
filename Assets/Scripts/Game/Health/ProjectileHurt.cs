@@ -9,6 +9,11 @@ using UnityEngine;
 [RequireComponent(typeof(HpComponent))]
 public class ProjectileHurt : MonoBehaviour
 {
+
+    #region Events
+    public event System.Action<Enemy> OnDeath;
+    #endregion
+
     private HpComponent hpComponent;
     
     [SerializeField] private TeamTag team; 
@@ -31,8 +36,10 @@ public class ProjectileHurt : MonoBehaviour
             if (hpComponent.GetCurrentHp() <= 0)
             {
                 //IMA DEAD
-                Debug.Log("deadge");
-                gameObject.SetActive(false);
+                OnDeath?.Invoke(gameObject.GetComponent<Enemy>());
+                Destroy(this.gameObject);
+               //Debug.Log("deadge");
+               //gameObject.SetActive(false);
             }
         }
     }

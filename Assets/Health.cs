@@ -24,7 +24,6 @@ public class Health : MonoBehaviour
     [TagField]
     private List<string> weaponTag;
     [SerializeField]
-    private GameObject destroyOnDeath;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
