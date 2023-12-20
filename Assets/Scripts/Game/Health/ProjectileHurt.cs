@@ -30,7 +30,7 @@ public class ProjectileHurt : MonoBehaviour
 
             if (hpComponent.GetCurrentHp() <= 0)
             {
-                gameObject.GetComponent<Entity>().OnDeath();
+                gameObject.GetComponent<Entity>()?.OnDeath();
             }
         }
     }

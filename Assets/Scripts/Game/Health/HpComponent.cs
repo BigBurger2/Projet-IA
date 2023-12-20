@@ -18,7 +18,7 @@ public class HpComponent : MonoBehaviour
     public void ChangeValue(float difference)
     {
         currentHp += difference;
-        if (currentHp < 0) { }
+        if (currentHp < 0)
             currentHp = 0;
         if (currentHp > maxHp && !overhealAllowed)
             currentHp = maxHp;
