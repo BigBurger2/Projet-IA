@@ -5,17 +5,33 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField]
-    private int HP {  get; set; }
+    [Range(1, 500)]
+    private int HP;
+    [SerializeField]
+    private string weaponTag;
+    [SerializeField]
+    private GameObject destroyOnDeath;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.tag == weaponTag)
+        {
+            TakeDammage(collision.GetComponent<Weapon>().weaponData.dammage);
+            collision.gameObject.SetActive(false);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void TakeDammage(int dammage)
     {
-        
+        HP -= dammage;
+        if (HP <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(destroyOnDeath);
     }
 }
