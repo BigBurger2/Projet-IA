@@ -19,9 +19,7 @@ struct WeaponList
 
 public class WeaponsManager : MonoBehaviour
 {
-    public Transform Target;
     public Transform Player;
-    public Controller playerController;
     [SerializeField]
     private GameObject weaponPrefab;
     [SerializeField]
@@ -37,10 +35,11 @@ public class WeaponsManager : MonoBehaviour
 
     private Vector2 lastClickMouse;
 
+    [SerializeField]
+    private Camera mainCamera;
 
     //private int index = 0;
 
-    private float TimeStopShoot = 0;
 
     private void Awake()
     {
@@ -142,14 +141,16 @@ public class WeaponsManager : MonoBehaviour
             {
                 //Debug.Log(parent.name + " : " + wpList.index + " : " + wpList.nbWeapons);
 
-                lastClickMouse = Camera.main.ScreenToWorldPoint(InputManager.input.Player.MousePosition.ReadValue<Vector2>());
+                Vector3 truc = mainCamera.ScreenToWorldPoint(InputManager.input.Player.MousePosition.ReadValue<Vector2>());
+
+                lastClickMouse = truc;
 
 
-                Transform temp = parent.transform.GetChild(wpList.index);
-                temp.position = Player.position;
+                Transform tempTr = parent.transform.GetChild(wpList.index);
+                tempTr.position = Player.position;
 
 
-                wpList.weapons[wpList.index].Fire(lastClickMouse - new Vector2(temp.position.x, temp.position.y));
+                wpList.weapons[wpList.index].Fire(lastClickMouse - new Vector2(tempTr.position.x, tempTr.position.y));
 
 
 

@@ -4,19 +4,32 @@ using UnityEngine;
 
 public class AttackState : State
 {
-    public override void OnStart()
-    {
-        throw new System.NotImplementedException();
-    }
+    public IdleState idleState;
+    public ChaseState chaseState;
+    //public override void OnStart()
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 
-    public override void OnStop()
-    {
-        throw new System.NotImplementedException();
-    }
+    //public override void OnStop()
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 
-    public override State Do()
+    public override State RunCurrentState()  //Do()
     {
         Debug.Log("I Have Attacked !");
-        return this;
+        if (!idleState.canSeeThePlayer)
+        {
+            return idleState;
+        }
+        if (!chaseState.isInAttackRange)
+        {
+            return chaseState;
+        }
+        else
+        {
+            return this;
+        }
     }
 }
