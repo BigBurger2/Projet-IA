@@ -8,6 +8,10 @@ public class Door : MonoBehaviour
 
     [SerializeField] GameObject doors;
     [SerializeField] List<Enemy> enemy;
+    private bool active = false;
+
+    public bool Active { get => active; }
+
 
     void Start()
     {
@@ -16,7 +20,7 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        if (enemy.Count == 0) OppenTheDoor();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,35 +36,18 @@ public class Door : MonoBehaviour
                     
                 }
             }
+
+            active = true;
         }
         
     }
 
-    private void OppenTheDoor()
+    public void OppenTheDoor()
     {
         doors.SetActive(false);
+        active = false;
     }
 
-    private void RemoveEnemy(Enemy ennemie)
-    {
-        enemy.Remove(ennemie);
-        ennemie.GetComponent<Health>().OnDeath -= RemoveEnemy;
-    }
-
-    private void OnEnable()
-    {
-        foreach(var ennemie in enemy)
-        {
-            ennemie.GetComponent<Health>().OnDeath += RemoveEnemy;
-        }
-    }
-
-    private void OnDisable()
-    {
-        foreach (var ennemie in enemy)
-        {
-            ennemie.GetComponent<Health>().OnDeath -= RemoveEnemy;
-        }
-    }
+   
 
 }

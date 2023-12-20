@@ -12,9 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 1a3309824678d414a86d995d17babbfd
   - enabled: 1
-    path: Assets/Scenes/Boucle de jeu.unity
-    guid: 42f36a65ec7555d4bb33ae8e0620c8d1
-  - enabled: 1
-    path: Assets/Scenes/lvl2.unity
-    guid: 8298416a910080d45887c6a20cbb92f2
-  m_configObjects: {}
+    path: Assets/Scenes/Game Scene.unity
+    guid: dd306744f877ceb49a2ffae427661cb7
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: ed83cbbbf2a4c5141988d8627ed899e2, type: 2}

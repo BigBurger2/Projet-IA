@@ -8,28 +8,28 @@ public class Player : MonoBehaviour
     public int live = 3;
     public int lvl = 0;
 
-    void Start()
+    private void Start()
     {
         
     }
 
-    void Update()
+    private void Update()
     {
         
     }
 
-    void Heal()
+    public void Heal()
     {
         live++;
     }
 
-    void Damage()
+    public void Damage()
     {
         live--;
         isDead();
     }
 
-    void isDead()
+    private void isDead()
     {
         if (live == 0)
         {
