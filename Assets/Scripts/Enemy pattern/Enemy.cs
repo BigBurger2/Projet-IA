@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
         set { pattern = value; }
     }
 
+    public bool Agressive { get => agressive; set => agressive = value; }
     private void Awake()
     {
         agent.updateRotation = false;

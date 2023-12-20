@@ -15,10 +15,10 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
-  - 
-  - 
-  - 
+  - Map Collider
+  - Little Collider
+  - door
+  - Enemy
   - 
   - 
   - 
