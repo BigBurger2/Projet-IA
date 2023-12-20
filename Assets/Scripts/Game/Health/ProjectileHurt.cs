@@ -35,11 +35,7 @@ public class ProjectileHurt : MonoBehaviour
 
             if (hpComponent.GetCurrentHp() <= 0)
             {
-                //IMA DEAD
-                OnDeath?.Invoke(gameObject.GetComponent<Enemy>());
-                Destroy(this.gameObject);
-               //Debug.Log("deadge");
-               //gameObject.SetActive(false);
+                gameObject.GetComponent<Entity>().OnDeath();
             }
         }
     }
