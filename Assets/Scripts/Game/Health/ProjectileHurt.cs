@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Need for working collisions 
 [RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
+//[RequireComponent(typeof(Rigidbody2D))]
 //Need else we got no values to change
 [RequireComponent(typeof(HpComponent))]
 public class ProjectileHurt : MonoBehaviour
@@ -25,12 +25,14 @@ public class ProjectileHurt : MonoBehaviour
             if (projComp.GetSource() != team)
             {
                 hpComponent.ChangeValue(-projComp.weaponData.dammage);
+                collision.gameObject.SetActive(false);
             }
 
             if (hpComponent.GetCurrentHp() <= 0)
             {
                 //IMA DEAD
                 Debug.Log("deadge");
+                gameObject.SetActive(false);
             }
         }
     }
