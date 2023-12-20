@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,14 @@ using UnityEngine;
 // Structure qui stocke les copies des armes pour l'object pool et la référence à sa coroutine
 struct WeaponList
 {
+    public float LastTimeStopShoot;
     public int index;
     public int nbWeapons;
     public List<Weapon> weapons;
+    public float TimeReload;
     public IEnumerator Coroutine;
+
+    public bool fired;
 }
 
 public class WeaponsManager : MonoBehaviour
@@ -25,7 +30,10 @@ public class WeaponsManager : MonoBehaviour
     private Dictionary<GameObject, WeaponList> actualWeapons;
     private Dictionary<GameObject, WeaponList> modifiedWeapons;
 
+
     //private int index = 0;
+
+    private float TimeStopShoot = 0;
 
     private void Awake()
     {
@@ -54,6 +62,9 @@ public class WeaponsManager : MonoBehaviour
             tmpWpList.Coroutine = FireCoroutine(parent, data);
             tmpWpList.weapons = new List<Weapon>();
             tmpWpList.index = 0;
+            tmpWpList.TimeReload = 1 / data.fireRate;
+            tmpWpList.LastTimeStopShoot = 0;
+            tmpWpList.fired = true;
             
 
             // Calc nb weapon
@@ -99,33 +110,52 @@ public class WeaponsManager : MonoBehaviour
         foreach (var weaponList in actualWeapons)
         {
             StopCoroutine(weaponList.Value.Coroutine);
-            actualWeapons = modifiedWeapons;
+
+            if (weaponList.Value.fired)
+            {
+                WeaponList temp = weaponList.Value;
+                temp.LastTimeStopShoot = Time.time;
+                temp.fired = false;
+                modifiedWeapons[weaponList.Key] = temp;
+            }
+
         }
+        actualWeapons = modifiedWeapons;
     }
 
 
     public IEnumerator FireCoroutine(GameObject parent, WeaponData weaponData)
     {
-        
         while (true)
         {
+
             WeaponList wpList = modifiedWeapons[parent];
-            //Debug.Log(parent.name + " : " + wpList.index + " : " + wpList.nbWeapons);
 
-            Transform temp = parent.transform.GetChild(wpList.index);
-            temp.position = Player.position;
-
-            wpList.weapons[wpList.index].Fire(playerController.vectorDir);
-
-
-            wpList.index++;
-            wpList.index %= wpList.nbWeapons;
-
-            modifiedWeapons[parent] = wpList;
-
-            for (int i=0; i < 10; i++)
+            if (wpList.fired)
             {
-                yield return new WaitForSeconds((1f / weaponData.fireRate)/10);
+                //Debug.Log(parent.name + " : " + wpList.index + " : " + wpList.nbWeapons);
+
+                Transform temp = parent.transform.GetChild(wpList.index);
+                temp.position = Player.position;
+
+                wpList.weapons[wpList.index].Fire(playerController.vectorDir);
+
+
+                wpList.index++;
+                wpList.index %= wpList.nbWeapons;
+
+                modifiedWeapons[parent] = wpList;
+
+                yield return new WaitForSeconds((1f / weaponData.fireRate));
+            }
+            else
+            {
+                if (Time.time - wpList.LastTimeStopShoot > wpList.TimeReload)
+                {
+                    wpList.fired = true;
+                    modifiedWeapons[parent] = wpList;
+                }
+                yield return new WaitForSeconds(0.2f);
             }
         }
     }
