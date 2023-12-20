@@ -1,8 +1,16 @@
 using NUnit.Framework.Internal;
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/*enum Tags
+{
+    Weapon,
+    EnnemyWeapon
+}*/
+[RequireComponent(typeof(BoxCollider2D))]
 public class Health : MonoBehaviour
 {
     #region Events
@@ -13,24 +21,14 @@ public class Health : MonoBehaviour
     [Range(1, 500)]
     private int HP;
     [SerializeField]
-    private string weaponTag;
+    [TagField]
+    private List<string> weaponTag;
     [SerializeField]
     private GameObject destroyOnDeath;
 
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == weaponTag)
+        if (weaponTag.Contains(collision.tag))
         {
             TakeDammage(collision.GetComponent<Weapon>().weaponData.dammage);
             collision.gameObject.SetActive(false);
