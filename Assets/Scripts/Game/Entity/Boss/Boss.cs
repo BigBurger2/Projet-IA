@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Boss : Entity
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void OnDeath()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("You killed the boss it's time for feedbacks");
+        Destroy(gameObject);
     }
 }

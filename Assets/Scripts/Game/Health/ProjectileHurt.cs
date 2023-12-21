@@ -36,10 +36,10 @@ public class ProjectileHurt : MonoBehaviour
                     collision.gameObject.SetActive(false);
                 }
 
-                if (hpComponent.GetCurrentHp() <= 0)
-                {
-                    gameObject.GetComponent<Entity>().OnDeath();
-                }
+            if (hpComponent.GetCurrentHp() <= 0)
+            {
+                gameObject.GetComponent<Entity>()?.OnDeath();
+            }
             }
         }
     }
