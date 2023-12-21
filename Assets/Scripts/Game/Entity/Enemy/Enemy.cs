@@ -18,6 +18,7 @@ public class Enemy : Entity
     [SerializeField] public GameObject player;
     [SerializeField] private NavMeshAgent agent;
 
+
     public float speed;
     public float fleeSpeed;
     public float followSpeed;
@@ -28,6 +29,7 @@ public class Enemy : Entity
 
     private Vector3 destination;
     private float distance;
+    private float distancePlayer;
     private int nextPoint;
 
     public Vector3[] Pattern
@@ -105,9 +107,9 @@ public class Enemy : Entity
 
     void FollowPlayer()
     {
-        distance = Vector2.Distance(transform.position, rbP.position);
+        distancePlayer = Vector2.Distance(transform.position, rbP.position);
 
-        if (distance < followDistance)
+        if (distancePlayer < followDistance)
         {
             agent.SetDestination(rbP.position);
             agent.speed = followSpeed;
@@ -116,21 +118,20 @@ public class Enemy : Entity
             rb.velocity = destination.normalized * followSpeed;*/
         }
         //else destination = pattern[nextPoint] - transform.position;
-
     }
 
     void FleePlayer()
     {
-        distance = Vector2.Distance(transform.position, player.transform.position);
+        distancePlayer = Vector2.Distance(transform.position, player.transform.position);
 
-        if (distance < fleeDistance) flee = true;
+        if (distancePlayer < fleeDistance) flee = true;
         if (flee)
         {
             destination = rbP.position - (Vector2)transform.position;
             //rb.velocity = destination.normalized * fleeSpeed * -1;
         }
         else destination = pattern[nextPoint] - transform.position;
-        if (distance > fleeDistance * 2) flee = false;
+        if (distancePlayer > fleeDistance * 2) flee = false;
     }
 
     void Update()
