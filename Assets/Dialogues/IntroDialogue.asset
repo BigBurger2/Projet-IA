@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IntroDialogue
   m_EditorClassIdentifier: 
   dialogueLines:
-  - dialogue: 
-  - dialogue: 
-  - dialogue: 
-  - dialogue: 
+  - dialogue: Bla bla
+  - dialogue: blio
+  - dialogue: okerg
+  - dialogue: lf,hg
