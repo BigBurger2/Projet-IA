@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Node : ScriptableObject
@@ -18,7 +19,9 @@ public abstract class Node : ScriptableObject
     public string guid;
     [HideInInspector]
     public Vector2 position; 
-    
+    [HideInInspector] 
+    public GameObject context;
+
     public State Update()
     {
         if (!started)
@@ -41,6 +44,11 @@ public abstract class Node : ScriptableObject
     {
         return Instantiate(this);
     }
+    
+    public virtual void OnInit() {
+        // Nothing to do here
+    }
+    
     protected abstract void OnStart();
     protected abstract void OnStop();
     protected abstract State OnUpdate();

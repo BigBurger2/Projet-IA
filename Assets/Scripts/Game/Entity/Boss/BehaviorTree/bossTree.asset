@@ -1,0 +1,340 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7710801571984571309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bec3f052452af04eaba305be35e1c5e, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 5ed42fc641fcd2e4bba608624cd70579
+  position: {x: 604, y: 321}
+  duration: 1
+--- !u!114 &-6549681161160772503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469bc248d96764a4eb088ef717baf9f3, type: 3}
+  m_Name: DashAtk
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 908413532c8a02f4a8f4c94ccd15884f
+  position: {x: 660.0199, y: -174.67992}
+  bossScript: {fileID: 0}
+--- !u!114 &-6198022309140943727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acaa5a560fa2dd45937c8ec6e1efc72, type: 3}
+  m_Name: WaitingPlayer
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 992a6b9219939954a92db078febe8f4b
+  position: {x: 17, y: 72}
+  child: {fileID: 3476831970946111235}
+  bossScript: {fileID: 0}
+--- !u!114 &-5266283396822257374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bfee80958f4d1459d2e122fc97ded9, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 8eecc1beccc724049a2aa01e9a3d7163
+  position: {x: 527.0199, y: 77.32009}
+  children:
+  - {fileID: -354703941805972627}
+  - {fileID: -4713462941261536668}
+  - {fileID: -3443031353030560201}
+--- !u!114 &-4898469710121446109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db9b0479a6f64c4098d81c9ede8ee27, type: 3}
+  m_Name: BigZoneAtk
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: b2b1e4b1e9eb3094c99147bb4fe4c19d
+  position: {x: 604, y: 244}
+  bossScript: {fileID: 0}
+--- !u!114 &-4713462941261536668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff2bf1c76c6e1444ca17f5f51185a1e8, type: 3}
+  m_Name: TriBoom
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: e2ecc68bc2073be4e9ba0e6ac99e8257
+  position: {x: 660.0199, y: 77.32009}
+  bossScript: {fileID: 0}
+--- !u!114 &-3443031353030560201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bec3f052452af04eaba305be35e1c5e, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 9c51e8001545fa848a47fbd2c2e3fdd4
+  position: {x: 660.0199, y: 154.32008}
+  duration: 1
+--- !u!114 &-3421272332148439836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bfee80958f4d1459d2e122fc97ded9, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 98387d31b87acf047bd55ef59d4b0eb7
+  position: {x: 473, y: 300}
+  children:
+  - {fileID: -4898469710121446109}
+  - {fileID: -7710801571984571309}
+--- !u!114 &-2604065584197880569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc24a1be0b4f32b40beb51d53612f5dd, type: 3}
+  m_Name: IfLowHP
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: a476f3ddd70bd8041915f82b92e4c8f9
+  position: {x: 361, y: 300}
+  child: {fileID: -3421272332148439836}
+  bossScript: {fileID: 0}
+--- !u!114 &-354703941805972627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e69f008cb1b4bb4a883d363c8c309b0, type: 3}
+  m_Name: ChasePLayer
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 463b48e909ee8bd4aa22305e6e8a9cbb
+  position: {x: 660.0199, y: 0.32002783}
+  bossScript: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd49d776a1c5b554190c72380c6a4c06, type: 3}
+  m_Name: bossTree
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 5027920674754820579}
+  treeState: 2
+  nodes:
+  - {fileID: 5027920674754820579}
+  - {fileID: 3476831970946111235}
+  - {fileID: -6198022309140943727}
+  - {fileID: -5266283396822257374}
+  - {fileID: 8218276514655937891}
+  - {fileID: -354703941805972627}
+  - {fileID: 1151105872979512724}
+  - {fileID: -2604065584197880569}
+  - {fileID: 5394059273735408903}
+  - {fileID: 616856277825420563}
+  - {fileID: -6549681161160772503}
+  - {fileID: 1721250528738499206}
+  - {fileID: -3421272332148439836}
+  - {fileID: -4898469710121446109}
+  - {fileID: -7710801571984571309}
+  - {fileID: -4713462941261536668}
+  - {fileID: -3443031353030560201}
+--- !u!114 &616856277825420563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e69f008cb1b4bb4a883d363c8c309b0, type: 3}
+  m_Name: ChasePLayer
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: d98a898d6638ab542a622c00119116d7
+  position: {x: 660.0199, y: -251.67993}
+  bossScript: {fileID: 0}
+--- !u!114 &1151105872979512724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bfee80958f4d1459d2e122fc97ded9, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: fd68ab6f2be336e4d8544e56f04ffe7e
+  position: {x: 228, y: 72}
+  children:
+  - {fileID: -2604065584197880569}
+  - {fileID: 8218276514655937891}
+--- !u!114 &1721250528738499206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bec3f052452af04eaba305be35e1c5e, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 2398c307df7aca14fbdfa8fb0714f6d4
+  position: {x: 660.0199, y: -97.67998}
+  duration: 1
+--- !u!114 &3476831970946111235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f00a18d5b004c74790d58ca2a4263a5, type: 3}
+  m_Name: Repeat
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: f847cb95c1795b84c94dd41a72020c72
+  position: {x: 141, y: 72}
+  child: {fileID: 1151105872979512724}
+  restartOnSuccess: 1
+  restartOnFailure: 0
+  maxRepeats: 0
+--- !u!114 &5027920674754820579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de13a4f85a144c640931ee3145716c6f, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: c94d241c4cdd61e408770d114fa5d355
+  position: {x: -86, y: 72.2}
+  child: {fileID: -6198022309140943727}
+--- !u!114 &5394059273735408903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bfee80958f4d1459d2e122fc97ded9, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 0c86ec9057ad71e44a3e3b09561d6920
+  position: {x: 527.0199, y: -174.67992}
+  children:
+  - {fileID: 616856277825420563}
+  - {fileID: -6549681161160772503}
+  - {fileID: 1721250528738499206}
+--- !u!114 &8218276514655937891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea4f2adae5b9377458b383f339d03c4f, type: 3}
+  m_Name: RandomSelector
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 5f47610f68aff1d43b540124126903b8
+  position: {x: 361.01996, y: -76.679955}
+  children:
+  - {fileID: 5394059273735408903}
+  - {fileID: -5266283396822257374}
