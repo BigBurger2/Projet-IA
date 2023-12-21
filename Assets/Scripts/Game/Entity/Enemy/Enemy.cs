@@ -7,7 +7,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Entity
 {
     private Rigidbody2D rbP;
     //private Rigidbody2D rb;
@@ -156,5 +156,16 @@ public class Enemy : MonoBehaviour
             Pattern[j] = new Vector3(Random.Range(-50f, 50f), Random.Range(-10f, 10f), 0);
             patternOn = true;
         }
+    }
+
+
+    public override void OnDeath()
+    {
+        // -1 oponent dans le game manager
+        //animator death 
+        //Drop Loot
+        Debug.Log("DID YOU JUST KILL THIS WABBIT");
+        CallEvent();
+        Destroy(gameObject);
     }
 }

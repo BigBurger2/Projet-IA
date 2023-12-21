@@ -18,6 +18,7 @@ public class EnnemyCollision : MonoBehaviour
     private bool hit = false;
 
     [SerializeField] private TeamTag team;
+
     private void Start()
     {
         hpComponent = GetComponent<HpComponent>();
