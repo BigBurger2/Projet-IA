@@ -11,15 +11,12 @@ public class Game : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] List<Entity> enemyRoom1;
     [SerializeField] List<Entity> enemyRoom2;
+    [SerializeField] List<Entity> BossRoom;
     [SerializeField] Door Room1;
     [SerializeField] Door Room2;
+    [SerializeField] Door BossDoor;
 
     bool pause = false;
-
-    private void Start()
-    {
-
-    }
 
     private void Update()
     {
@@ -32,6 +29,11 @@ public class Game : MonoBehaviour
         if (enemyRoom2.Count == 0)
         {
             Room2.OppenTheDoor();
+        }
+        
+        if (BossRoom.Count == 0)
+        {
+            BossDoor.OppenTheDoor();
             WinCanva.SetActive(true);
         }
 
@@ -45,6 +47,7 @@ public class Game : MonoBehaviour
     {
         if(Room1.Active) enemyRoom1.Remove(ennemie);
         if(Room2.Active) enemyRoom2.Remove(ennemie);
+        if(Room2.Active) BossRoom.Remove(ennemie);
 
         ennemie.OnDeathEvent -= RemoveEnemy;
     }
@@ -60,6 +63,11 @@ public class Game : MonoBehaviour
         {
             ennemie.OnDeathEvent += RemoveEnemy;
         }
+        
+        foreach (var ennemie in BossRoom)
+        {
+            ennemie.OnDeathEvent += RemoveEnemy;
+        }
     }
 
     private void OnDisable()
@@ -70,6 +78,11 @@ public class Game : MonoBehaviour
         }
 
         foreach (var ennemie in enemyRoom2)
+        {
+            ennemie.OnDeathEvent -= RemoveEnemy;
+        }
+
+        foreach (var ennemie in BossRoom)
         {
             ennemie.OnDeathEvent -= RemoveEnemy;
         }
