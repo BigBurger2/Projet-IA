@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using System;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
+using UnityEngine.UI;
+using System.IO;
+
 
 
 public class IdleState : State
@@ -12,12 +15,19 @@ public class IdleState : State
     public float distance;
     [SerializeField] private Vector3[] pattern;
     [SerializeField] public GameObject player;
+    [SerializeField] public bool patternOn;
     private int nextPoint;
     public float speed;
     [SerializeField] public NavMeshAgent agent;
     public double distancePlayer;
     public bool canSeeThePlayer;
     public ChaseState chaseState;
+    public Rigidbody2D rbP;
+    public Vector3[] Pattern
+    {
+        get { return pattern; }
+        set { pattern = value; }
+    }
 
     //public override void OnStart()
     //{
@@ -28,11 +38,43 @@ public class IdleState : State
     //{
     //    throw new System.NotImplementedException();
     //}
+    void Start()
+    {
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        if (player == null) { player = GameObject.FindGameObjectWithTag("Player"); }
+
+        //rb = GetComponent<Rigidbody2D>();
+        rbP = player.GetComponent<Rigidbody2D>();
+
+
+        if (pattern.Length < 2)
+        {
+            patternOn = true;
+        }
+
+        if (patternOn)
+        {
+            nextPoint = 1;
+            transform.position = pattern[0];
+
+            agent.SetDestination(pattern[nextPoint]);
+            agent.speed = speed;
+        }
+
+    }
 
     public override State RunCurrentState() //Do()
     {
-        distancePlayer = Math.Sqrt(Math.Pow(player.transform.position.x - transform.position.x, 2)+Math.Pow(player.transform.position.y - transform.position.y , 2));
-        FollowPattern();
+        distancePlayer = (transform.position - player.transform.position).magnitude;
+        if (patternOn)
+        {
+            FollowPattern();
+        }
+        if (distancePlayer < chaseState.followDistance)
+        {
+            canSeeThePlayer = true;
+        }
         if (canSeeThePlayer)
         {
             return chaseState;
@@ -56,10 +98,6 @@ public class IdleState : State
         {
             nextPoint++;
             if (nextPoint == pattern.Length) nextPoint = 0;
-        }
-        if(distancePlayer < chaseState.followDistance)
-        {
-            canSeeThePlayer = true;
         }
 
 

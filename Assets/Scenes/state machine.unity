@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 200163236}
   - component: {fileID: 200163238}
   - component: {fileID: 200163237}
+  - component: {fileID: 200163239}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -29635,6 +29636,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &200163239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200163235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &236072839
 GameObject:
   m_ObjectHideFlags: 0
@@ -29668,7 +29685,7 @@ MonoBehaviour:
   attackState: {fileID: 1370645532}
   isInAttackRange: 0
   followDistance: 10
-  rbP: {fileID: 1835218705}
+  followSpeed: 5
 --- !u!4 &236072841
 Transform:
   m_ObjectHideFlags: 0
@@ -29856,10 +29873,13 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   player: {fileID: 1835218700}
+  patternOn: 0
   speed: 6
   agent: {fileID: 725277945}
+  distancePlayer: 0
   canSeeThePlayer: 0
   chaseState: {fileID: 236072840}
+  rbP: {fileID: 1835218705}
 --- !u!4 &459562581
 Transform:
   m_ObjectHideFlags: 0
@@ -30492,7 +30512,7 @@ GameObject:
   - component: {fileID: 822267249}
   - component: {fileID: 822267252}
   - component: {fileID: 822267251}
-  - component: {fileID: 822267250}
+  - component: {fileID: 822267253}
   m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
@@ -30515,27 +30535,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 471718680}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &822267250
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822267248}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 970ee30d42f60864abc21d6484596053, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!483693784 &822267251
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -38461,6 +38460,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &822267253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822267248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &890834268
 GameObject:
   m_ObjectHideFlags: 0
@@ -39023,6 +39038,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd44a44cd62c64fbfc1eea95b24880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OverrideByGrid: 0
+  m_UseMeshPrefab: {fileID: 0}
+  m_CompressBounds: 0
+  m_OverrideVector: {x: 1, y: 1, z: 1}
 --- !u!114 &1319616317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39035,6 +39054,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04976799df50f54ba128eff723155a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.06666667
+  m_BuildHeightMesh: 0
+  m_HideEditorLogs: 0
+  m_NavMeshData: {fileID: 23800000, guid: e61d32936cbe72a4a91e94313deea0a0, type: 2}
 --- !u!4 &1319616318
 Transform:
   m_ObjectHideFlags: 0

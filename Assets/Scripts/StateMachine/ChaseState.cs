@@ -10,7 +10,7 @@ public class ChaseState : State
     public AttackState attackState;
     public bool isInAttackRange;
     public float followDistance = 10f;
-    public Rigidbody2D rbP;
+    public float followSpeed;
 
     //public override void OnStart()
     //{
@@ -42,10 +42,10 @@ public class ChaseState : State
 
     void FollowPlayer()
     {
-        idleState.distance = Vector2.Distance(transform.position, rbP.position);
+        idleState.distance = Vector2.Distance(transform.position, idleState.rbP.position);
 
-        idleState.agent.SetDestination(rbP.position);
-        idleState.agent.speed = followDistance;
+        idleState.agent.SetDestination(idleState.rbP.position);
+        idleState.agent.speed = followSpeed;
 
         /*destination = player.transform.position - transform.position;
         rb.velocity = destination.normalized * followSpeed;*/
