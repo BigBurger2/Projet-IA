@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class ChaseState : State
 {
     public IdleState idleState;
     public AttackState attackState;
     public bool isInAttackRange;
+    public float followDistance = 10f;
+    public Rigidbody2D rbP;
 
     //public override void OnStart()
     //{
@@ -20,6 +24,8 @@ public class ChaseState : State
 
     public override State RunCurrentState() //Do()
     {
+        idleState.distancePlayer = Math.Sqrt(Math.Pow(idleState.player.transform.position.x - transform.position.x, 2) + Math.Pow(idleState.player.transform.position.y - transform.position.y, 2));
+        FollowPlayer();
         if(isInAttackRange)
         {
             return attackState;
@@ -31,6 +37,22 @@ public class ChaseState : State
         else
         {
             return this;
+        }
+    }
+
+    void FollowPlayer()
+    {
+        idleState.distance = Vector2.Distance(transform.position, rbP.position);
+
+        idleState.agent.SetDestination(rbP.position);
+        idleState.agent.speed = followDistance;
+
+        /*destination = player.transform.position - transform.position;
+        rb.velocity = destination.normalized * followSpeed;*/
+        //else destination = pattern[nextPoint] - transform.position;
+        if(idleState.distancePlayer > followDistance)
+        {
+            idleState.canSeeThePlayer = false;
         }
     }
 }
