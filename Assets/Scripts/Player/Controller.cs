@@ -39,7 +39,13 @@ public class Controller : MonoBehaviour
         int actualDir;
         float characterSpeed = moveVector.magnitude;
 
-        animator.SetFloat("Speed", moveSpeed);
+        if (characterSpeed > 0.2f)
+        {
+            animator.SetFloat("Speed", moveSpeed);
+        }else
+        {
+            animator.SetFloat("Speed", 0);
+        }
 
         if (characterSpeed > 0.1)
         {
