@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Weapon
   - EnnemyWeapon
+  - Ennemy
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
-  - 
-  - 
-  - 
+  - Map Collider
+  - Little Collider
+  - door
+  - Enemy
   - 
   - 
   - 

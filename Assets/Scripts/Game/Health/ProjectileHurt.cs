@@ -9,6 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(HpComponent))]
 public class ProjectileHurt : MonoBehaviour
 {
+
     private HpComponent hpComponent;
     
     [SerializeField] private TeamTag team; 
@@ -30,9 +31,7 @@ public class ProjectileHurt : MonoBehaviour
 
             if (hpComponent.GetCurrentHp() <= 0)
             {
-                //IMA DEAD
-                Debug.Log("deadge");
-                gameObject.SetActive(false);
+                gameObject.GetComponent<Entity>()?.OnDeath();
             }
         }
     }
