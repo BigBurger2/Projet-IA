@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: IntroDialogue
   m_EditorClassIdentifier: 
   dialogueLines:
-  - dialogue: Bla bla
-  - dialogue: blio
-  - dialogue: okerg
-  - dialogue: lf,hg
+  - dialogue: Coucou mon wapinyou bienvenyue dans we *notices buldge* monde mewveiwweux
+      de *nyom du monde*
+  - dialogue: "ici *runs away* tout est m-m-mignyon et gentiw tout est gouvewn\xE9
+      pas wes meiwweuwes cawottes du monde ?-?-?!?1"
+  - dialogue: "Mawheuweusement c-cewtains wapins ont \xE9t\xE9 contamin\xE9 paw we
+      *notices buldge* s\xE9v\xE8we wadis nyoiw "
+  - dialogue: "Tu dois faiwe quewque chouse mon wapin ?-?-?!?1 Iws faut *blushes*
+      que tu ^-^ nyous en d\xE9bawasse"
+  - dialogue: Mais fait attention a toi *whispers to self*
