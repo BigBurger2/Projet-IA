@@ -8,6 +8,7 @@ public class EnnemyCollision : MonoBehaviour
     private HpComponent hpComponent;
 
     [SerializeField]
+    [Range(0, 10)]
     private float timeInvicibility;
 
     private bool isInvincible;
@@ -17,7 +18,7 @@ public class EnnemyCollision : MonoBehaviour
     private float timeLastHit = 0;
     private bool hit = false;
 
-    [SerializeField] private TeamTag team;
+    //[SerializeField] private TeamTag team;
 
     private void Start()
     {
