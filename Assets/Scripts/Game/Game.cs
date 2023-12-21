@@ -8,20 +8,25 @@ public class Game : MonoBehaviour
     public GameObject gameOverCanva;
     public GameObject WinCanva;
 
-    [SerializeField] Player player;
+    [SerializeField] GameObject player;
     [SerializeField] List<Entity> enemyRoom1;
     [SerializeField] List<Entity> enemyRoom2;
+    [SerializeField] List<Entity> BossRoom;
     [SerializeField] Door Room1;
     [SerializeField] Door Room2;
+    [SerializeField] Door BossDoor;
+    HpComponent playerLife;
+    [SerializeField] PauseManager pauseManager;
 
     bool pause = false;
-
     private void Start()
     {
-
+        playerLife = player.GetComponent<HpComponent>();
     }
 
-    private void Update()
+
+
+    private void FixedUpdate()
     {
         if (enemyRoom1.Count == 0)
         {
@@ -32,12 +37,20 @@ public class Game : MonoBehaviour
         if (enemyRoom2.Count == 0)
         {
             Room2.OppenTheDoor();
+        }
+        
+        if (BossRoom.Count == 0)
+        {
+            BossDoor.OppenTheDoor();
             WinCanva.SetActive(true);
+            pauseManager.Stop();
+
         }
 
-        if (player.live == 0) 
+        if (playerLife.GetCurrentHp() <= 0) 
         {
             gameOverCanva.SetActive(true);
+            pauseManager.Stop();
         } 
     }
 
@@ -45,6 +58,7 @@ public class Game : MonoBehaviour
     {
         if(Room1.Active) enemyRoom1.Remove(ennemie);
         if(Room2.Active) enemyRoom2.Remove(ennemie);
+        if(BossDoor.Active) BossRoom.Remove(ennemie);
 
         ennemie.OnDeathEvent -= RemoveEnemy;
     }
@@ -60,6 +74,11 @@ public class Game : MonoBehaviour
         {
             ennemie.OnDeathEvent += RemoveEnemy;
         }
+        
+        foreach (var ennemie in BossRoom)
+        {
+            ennemie.OnDeathEvent += RemoveEnemy;
+        }
     }
 
     private void OnDisable()
@@ -70,6 +89,11 @@ public class Game : MonoBehaviour
         }
 
         foreach (var ennemie in enemyRoom2)
+        {
+            ennemie.OnDeathEvent -= RemoveEnemy;
+        }
+
+        foreach (var ennemie in BossRoom)
         {
             ennemie.OnDeathEvent -= RemoveEnemy;
         }

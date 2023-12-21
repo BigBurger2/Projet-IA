@@ -63,7 +63,7 @@ public class Enemy : Entity
     void Start()
     {
         if (player == null) { player = GameObject.FindGameObjectWithTag("Player"); }
-
+        GetComponent<ProjectileHurt>().Invincible = true;
         //rb = GetComponent<Rigidbody2D>();
         rbP = player.GetComponent<Rigidbody2D>();
 
@@ -147,13 +147,10 @@ public class Enemy : Entity
             agent.SetDestination(rbP.position);
             agent.speed = followSpeed;
 
-            foreach(GameObject child in healthBarChild)
-            { 
+            foreach (GameObject child in healthBarChild)
+            {
                 child.SetActive(true);
             }
-
-            /*destination = player.transform.position - transform.position;
-            rb.velocity = destination.normalized * followSpeed;*/
         }
         else if (distance > 0.2f && !patternOn)
         {
@@ -172,7 +169,6 @@ public class Enemy : Entity
                 child.SetActive(false);
             }
         }
-        //else destination = pattern[nextPoint] - transform.position;
     }
 
     void FleePlayer()
@@ -189,11 +185,7 @@ public class Enemy : Entity
         if (distancePlayer > fleeDistance * 2) flee = false;
     }
 
-    void Update()
-    {
-
-    }
-
+    
     public void newEnemy(Enemy Enemy, int nbrEnemy)
     {
         for (int i = 0; i < nbrEnemy; i++)

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class HpComponent : MonoBehaviour
 {
     [SerializeField] private float maxHp;
-    private float currentHp;
+    public float currentHp;
 
     [SerializeField] private bool overhealAllowed;
 
@@ -25,9 +25,8 @@ public class HpComponent : MonoBehaviour
 
         if (currentHp < 0)
             currentHp = 0;
-        if (currentHp > maxHp && !overhealAllowed)
+        if (currentHp > maxHp && !overhealAllowed) 
             currentHp = maxHp;
-
     }
 
     public void AllowOverheal(bool value)
