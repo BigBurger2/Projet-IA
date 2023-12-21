@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DialogueDisplayer : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class DialogueDisplayer : MonoBehaviour
 
             yield return null;
         }
+        dialogueBox.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
     public void DisplayDialogue(DialogueObject dialogueObject)
     {

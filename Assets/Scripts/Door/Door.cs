@@ -12,17 +12,6 @@ public class Door : MonoBehaviour
 
     public bool Active { get => active; }
 
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -33,7 +22,7 @@ public class Door : MonoBehaviour
                 foreach (var ennemie in enemy)
                 {
                     ennemie.Agressive = true;
-                    
+                    ennemie.GetComponent<ProjectileHurt>().Invincible = false;
                 }
             }
 
