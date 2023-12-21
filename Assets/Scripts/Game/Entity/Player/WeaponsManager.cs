@@ -109,7 +109,6 @@ public class WeaponsManager : MonoBehaviour
         foreach (var weaponList in actualWeapons)
         {
             StartCoroutine(weaponList.Value.Coroutine);
-            Woosh.Play();
         }
 
     }
@@ -155,7 +154,7 @@ public class WeaponsManager : MonoBehaviour
 
                 wpList.weapons[wpList.index].Fire(lastClickMouse - new Vector2(tempTr.position.x, tempTr.position.y));
 
-
+                Woosh.Play();
 
                 wpList.index++;
                 wpList.index %= wpList.nbWeapons;
