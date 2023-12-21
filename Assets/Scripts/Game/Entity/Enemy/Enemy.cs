@@ -11,12 +11,13 @@ public class Enemy : Entity
 {
     private Rigidbody2D rbP;
     //private Rigidbody2D rb;
-    [SerializeField] private Vector3[] pattern;
+    [SerializeField] private List<Vector3> pattern;
     [SerializeField] public bool patternOn;
     [SerializeField] private bool agressive;
     [SerializeField] private bool savage;
     [SerializeField] public GameObject player;
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private GameObject healthBar;
 
 
     public float speed;
@@ -32,17 +33,31 @@ public class Enemy : Entity
     private float distancePlayer;
     private int nextPoint;
 
-    public Vector3[] Pattern
+    private List<GameObject> healthBarChild;
+
+    public List<Vector3> Pattern
     {
         get { return pattern; }
         set { pattern = value; }
     }
 
     public bool Agressive { get => agressive; set => agressive = value; }
+
+
     private void Awake()
     {
+        healthBarChild = new List<GameObject>();
+
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+
+        for (int i = 0; i < healthBar.transform.childCount; i++)
+        {
+            GameObject temp = healthBar.transform.GetChild(i).gameObject;
+            temp.SetActive(false);
+            healthBarChild.Add(temp);
+        }
     }
 
     void Start()
@@ -52,14 +67,30 @@ public class Enemy : Entity
         //rb = GetComponent<Rigidbody2D>();
         rbP = player.GetComponent<Rigidbody2D>();
 
-        nextPoint = 1;
-        transform.position = pattern[0];
-        /*destination = pattern[nextPoint] - transform.position;
-        distance = Vector2.Distance(transform.position, pattern[nextPoint]);*/
-        //rb.velocity = destination.normalized * speed;
 
-        agent.SetDestination(pattern[nextPoint]);
-        agent.speed = speed;
+        if (pattern.Count < 2)
+        {
+            if (pattern.Count == 0)
+            {
+                pattern.Add(transform.position);
+            }
+            patternOn = false;
+        }
+
+        transform.position = pattern[0];
+        if (patternOn)
+        {
+
+            
+
+            nextPoint = 1;
+            /*destination = pattern[nextPoint] - transform.position;
+            distance = Vector2.Distance(transform.position, pattern[nextPoint]);*/
+            //rb.velocity = destination.normalized * speed;
+
+            agent.SetDestination(pattern[nextPoint]);
+            agent.speed = speed;
+        }
 
     }
 
@@ -67,9 +98,9 @@ public class Enemy : Entity
     {
         if (patternOn)
         {
-            for (int i = 0; i < pattern.Length; i++)
+            for (int i = 0; i < pattern.Count; i++)
             {
-                if (i + 1 == (int)pattern.Length) Gizmos.DrawLine(pattern[i], pattern[0]);
+                if (i + 1 == (int)pattern.Count) Gizmos.DrawLine(pattern[i], pattern[0]);
                 else Gizmos.DrawLine(pattern[i], pattern[i + 1]);
             }
         }
@@ -96,7 +127,7 @@ public class Enemy : Entity
         if (distance < 2f)
         {
             nextPoint++;
-            if (nextPoint == pattern.Length) nextPoint = 0;
+            if (nextPoint == pattern.Count) nextPoint = 0;
         }
 
 /*
@@ -108,14 +139,31 @@ public class Enemy : Entity
     void FollowPlayer()
     {
         distancePlayer = Vector2.Distance(transform.position, rbP.position);
+        distance = Vector2.Distance(transform.position, pattern[nextPoint]);
+
 
         if (distancePlayer < followDistance)
         {
             agent.SetDestination(rbP.position);
             agent.speed = followSpeed;
 
+            foreach(GameObject child in healthBarChild)
+            { 
+                child.SetActive(true);
+            }
+
             /*destination = player.transform.position - transform.position;
             rb.velocity = destination.normalized * followSpeed;*/
+        }
+        else if (distance > 0.2f && !patternOn)
+        {
+            foreach (GameObject child in healthBarChild)
+            {
+                child.SetActive(false);
+            }
+
+            agent.SetDestination(pattern[nextPoint]);
+            agent.speed = speed;
         }
         //else destination = pattern[nextPoint] - transform.position;
     }
@@ -144,11 +192,11 @@ public class Enemy : Entity
         for (int i = 0; i < nbrEnemy; i++)
         {
             Instantiate(Enemy);
-            randomPattern();
+            //randomPattern();
         }
     }
 
-    private void randomPattern()
+/*    private void randomPattern()
     {
         int path = Random.Range(3, 7);
         pattern = new Vector3[path];
@@ -157,7 +205,7 @@ public class Enemy : Entity
             Pattern[j] = new Vector3(Random.Range(-50f, 50f), Random.Range(-10f, 10f), 0);
             patternOn = true;
         }
-    }
+    }*/
 
 
     public override void OnDeath()
