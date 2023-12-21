@@ -28,6 +28,8 @@ public class WeaponsManager : MonoBehaviour
     [SerializeField]
     private InputManager InputManager;
 
+    [SerializeField]
+    private AudioSource Woosh;
 
     private Dictionary<GameObject, WeaponList> actualWeapons;
     private Dictionary<GameObject, WeaponList> modifiedWeapons;
@@ -107,6 +109,7 @@ public class WeaponsManager : MonoBehaviour
         foreach (var weaponList in actualWeapons)
         {
             StartCoroutine(weaponList.Value.Coroutine);
+            Woosh.Play();
         }
 
     }
