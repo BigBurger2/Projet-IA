@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,10 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Health : MonoBehaviour
 {
+    #region Events
+    public event System.Action<Enemy> OnDeath;
+    #endregion
+
     [SerializeField]
     [Range(1, 500)]
     private int HP;
@@ -19,7 +24,6 @@ public class Health : MonoBehaviour
     [TagField]
     private List<string> weaponTag;
     [SerializeField]
-    private GameObject destroyOnDeath;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,6 +31,7 @@ public class Health : MonoBehaviour
         {
             TakeDammage(collision.GetComponent<Weapon>().weaponData.dammage);
             collision.gameObject.SetActive(false);
+            //Destroy(collision.gameObject);
         }
     }
 
@@ -41,6 +46,9 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        Destroy(destroyOnDeath);
+        OnDeath?.Invoke(gameObject.GetComponent<Enemy>());
+        Destroy(this.gameObject);
     }
+
+    
 }

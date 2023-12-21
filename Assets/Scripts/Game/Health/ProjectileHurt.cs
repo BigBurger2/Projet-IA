@@ -9,6 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(HpComponent))]
 public class ProjectileHurt : MonoBehaviour
 {
+
     private HpComponent hpComponent;
     
     [SerializeField] private TeamTag team; 

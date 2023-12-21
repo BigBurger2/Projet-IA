@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
         set { pattern = value; }
     }
 
+    public bool Agressive { get => agressive; set => agressive = value; }
     private void Awake()
     {
         agent.updateRotation = false;
@@ -109,7 +110,7 @@ public class Enemy : MonoBehaviour
         if (distance < followDistance)
         {
             agent.SetDestination(rbP.position);
-            agent.speed = followDistance;
+            agent.speed = followSpeed;
 
             /*destination = player.transform.position - transform.position;
             rb.velocity = destination.normalized * followSpeed;*/

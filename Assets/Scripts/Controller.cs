@@ -2,7 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+enum AnimStates
+{
+    Down = 2,
+    Up = 0,
+    Left = 3,
+    Right = 1
+}
 public class Controller : MonoBehaviour
 {
     public Animator animator;
@@ -15,15 +21,6 @@ public class Controller : MonoBehaviour
     private Vector2 moveVector = Vector2.zero;
     [Range(1f, 50f)]
     public float moveSpeed = 1f;
-
-
-    enum AnimStates
-    {
-        Down = 2,
-        Up = 0,
-        Left = 3,
-        Right = 1
-    }
 
 
     private void FixedUpdate()
@@ -42,7 +39,7 @@ public class Controller : MonoBehaviour
         int actualDir;
         float characterSpeed = moveVector.magnitude;
 
-        animator.SetFloat("Speed", characterSpeed);
+        animator.SetFloat("Speed", moveSpeed);
 
         if (characterSpeed > 0.1)
         {
