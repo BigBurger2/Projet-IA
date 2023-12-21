@@ -37029,20 +37029,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1286620973856864782, guid: c551033cdff4e6b448c72ccd5f155a04, type: 3}
   m_PrefabInstance: {fileID: 3940207064772372584}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1341899899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1341899895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 268ad0097902eee41a0c105f01b4d3a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 12
-  weaponTag: []
 --- !u!114 &1341899902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37058,6 +37044,33 @@ MonoBehaviour:
   point: 0
   live: 3
   lvl: 0
+--- !u!114 &1341899905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341899895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7382599701ee64b4dbeda8f20f7e270b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1341899906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341899895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a885cddc32ea7498d85cb562b38687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  currentHp: 0
+  overhealAllowed: 0
 --- !u!1 &1357284092
 GameObject:
   m_ObjectHideFlags: 0
@@ -41496,6 +41509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6191fd47d7fcdc64b9337b5337b0c863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healAmount: 10
 --- !u!1 &1973545980
 GameObject:
   m_ObjectHideFlags: 0
@@ -46378,6 +46392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
+  currentHp: 0
   overhealAllowed: 0
 --- !u!4 &944067791403227073
 Transform:
@@ -46494,10 +46509,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5434341257547273464, guid: c551033cdff4e6b448c72ccd5f155a04, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1341899899}
+      addedObject: {fileID: 1341899902}
     - targetCorrespondingSourceObject: {fileID: 5434341257547273464, guid: c551033cdff4e6b448c72ccd5f155a04, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1341899902}
+      addedObject: {fileID: 1341899906}
+    - targetCorrespondingSourceObject: {fileID: 5434341257547273464, guid: c551033cdff4e6b448c72ccd5f155a04, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1341899905}
   m_SourcePrefab: {fileID: 100100000, guid: c551033cdff4e6b448c72ccd5f155a04, type: 3}
 --- !u!114 &4136533415676867576
 MonoBehaviour:
@@ -46512,6 +46530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
+  currentHp: 0
   overhealAllowed: 0
 --- !u!4 &4752430975540871487
 Transform:
@@ -46568,9 +46587,9 @@ MonoBehaviour:
   - {x: 13.249494, y: -9.774371, z: 0}
   - {x: 16.732155, y: 0.06441116, z: 0}
   patternOn: 1
-  agressive: 1
+  agressive: 0
   savage: 0
-  player: {fileID: 0}
+  player: {fileID: 1341899895}
   agent: {fileID: 8659049400189280386}
   speed: 6
   fleeSpeed: 10
@@ -46860,7 +46879,7 @@ MonoBehaviour:
   - {x: 10.652717, y: 8.8525095, z: 0}
   - {x: 12.737113, y: 16.394142, z: 0}
   patternOn: 1
-  agressive: 1
+  agressive: 0
   savage: 0
   player: {fileID: 0}
   agent: {fileID: 5078102567751924606}

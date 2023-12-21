@@ -11,27 +11,35 @@ public class ProjectileHurt : MonoBehaviour
 {
 
     private HpComponent hpComponent;
-    
-    [SerializeField] private TeamTag team; 
+
+    private bool invincible = false;
+
+    [SerializeField] private TeamTag team;
+
+    public bool Invincible { get => invincible; set => invincible = value; }
+
     private void Start()
     {
         hpComponent = GetComponent<HpComponent>();
     }
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var projComp = collision.gameObject.GetComponent<Weapon>();
-        if (projComp != null)
+        if (!invincible)
         {
-            if (projComp.GetSource() != team)
+            var projComp = collision.gameObject.GetComponent<Weapon>();
+            if (projComp != null)
             {
-                hpComponent.ChangeValue(-projComp.weaponData.dammage);
-                collision.gameObject.SetActive(false);
-            }
+                if (projComp.GetSource() != team)
+                {
+                    hpComponent.ChangeValue(-projComp.weaponData.dammage);
+                    collision.gameObject.SetActive(false);
+                }
 
-            if (hpComponent.GetCurrentHp() <= 0)
-            {
-                gameObject.GetComponent<Entity>().OnDeath();
+                if (hpComponent.GetCurrentHp() <= 0)
+                {
+                    gameObject.GetComponent<Entity>().OnDeath();
+                }
             }
         }
     }

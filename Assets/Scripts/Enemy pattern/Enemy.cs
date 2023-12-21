@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         if (player == null) { player = GameObject.FindGameObjectWithTag("Player"); }
-
+        GetComponent<ProjectileHurt>().Invincible = true;
         //rb = GetComponent<Rigidbody2D>();
         rbP = player.GetComponent<Rigidbody2D>();
 

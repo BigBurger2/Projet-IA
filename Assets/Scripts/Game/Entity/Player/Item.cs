@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    [SerializeField] int healAmount;
 
     void Start()
     {
@@ -15,13 +16,9 @@ public class Item : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public int GetHeal()
     {
-        if (collision.tag == "Player")
-        {
-            collision.GetComponent<Player>().Heal();
-            Destroy(this.gameObject);
-        }
+        Destroy(gameObject);
+        return healAmount;
     }
-
 }

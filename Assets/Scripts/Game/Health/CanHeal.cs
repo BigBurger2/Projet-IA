@@ -15,4 +15,15 @@ public class CanHeal : MonoBehaviour
     {
         hpComponent.ChangeValue(+healAmount);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var item = collision.gameObject.GetComponent<Item>();
+        if (item != null)
+        {
+            Heal(item.GetHeal());
+          
+        }
+    }
+
 }
