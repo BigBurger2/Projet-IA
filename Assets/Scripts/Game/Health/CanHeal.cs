@@ -22,7 +22,6 @@ public class CanHeal : MonoBehaviour
         if (item != null)
         {
             Heal(item.GetHeal());
-          
         }
     }
 

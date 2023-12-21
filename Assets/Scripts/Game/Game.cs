@@ -8,17 +8,25 @@ public class Game : MonoBehaviour
     public GameObject gameOverCanva;
     public GameObject WinCanva;
 
-    [SerializeField] Player player;
+    [SerializeField] GameObject player;
     [SerializeField] List<Entity> enemyRoom1;
     [SerializeField] List<Entity> enemyRoom2;
     [SerializeField] List<Entity> BossRoom;
     [SerializeField] Door Room1;
     [SerializeField] Door Room2;
     [SerializeField] Door BossDoor;
+    HpComponent playerLife;
+    [SerializeField] PauseManager pauseManager;
 
     bool pause = false;
+    private void Start()
+    {
+        playerLife = player.GetComponent<HpComponent>();
+    }
 
-    private void Update()
+
+
+    private void FixedUpdate()
     {
         if (enemyRoom1.Count == 0)
         {
@@ -35,11 +43,14 @@ public class Game : MonoBehaviour
         {
             BossDoor.OppenTheDoor();
             WinCanva.SetActive(true);
+            pauseManager.Stop();
+
         }
 
-        if (player.live == 0) 
+        if (playerLife.GetCurrentHp() <= 0) 
         {
             gameOverCanva.SetActive(true);
+            pauseManager.Stop();
         } 
     }
 
@@ -47,7 +58,7 @@ public class Game : MonoBehaviour
     {
         if(Room1.Active) enemyRoom1.Remove(ennemie);
         if(Room2.Active) enemyRoom2.Remove(ennemie);
-        if(Room2.Active) BossRoom.Remove(ennemie);
+        if(BossDoor.Active) BossRoom.Remove(ennemie);
 
         ennemie.OnDeathEvent -= RemoveEnemy;
     }

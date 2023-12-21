@@ -27,17 +27,18 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void LaunchLvl()
+    {
+        SceneManager.LoadSceneAsync(2);
+        Time.timeScale = 1;
+
+    }
+
     public void LoadMenu()
     {
         SceneManager.LoadSceneAsync(0);
         Time.timeScale = 0;
 
-    }
-
-    public void NextLevel()
-    {
-        SceneManager.LoadSceneAsync(2);
-        Time.timeScale = 1;
     }
 
     public void RestartGame()

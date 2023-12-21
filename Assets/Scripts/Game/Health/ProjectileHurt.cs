@@ -48,7 +48,7 @@ public class ProjectileHurt : MonoBehaviour
             {
                 gameObject.GetComponent<Entity>()?.OnDeath();
             }
-            }
+            
         }
     }
 }
