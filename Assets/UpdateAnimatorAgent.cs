@@ -1,50 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
-using UnityEngine.InputSystem;
-enum AnimStates
+using UnityEngine.AI;
+
+[RequireComponent(typeof(Animator))]
+[RequireComponent (typeof(NavMeshAgent))]
+public class UpdateAnimatorAgent : MonoBehaviour
 {
-    Down = 2,
-    Up = 0,
-    Left = 3,
-    Right = 1
-}
-public class Controller : MonoBehaviour
-{
-    public Animator animator;
+
+    private Animator animator;
+
     private int LastDirection = -1;
-    public Rigidbody2D rb;
-    [HideInInspector]
-    public Vector2 vectorDir = Vector2.down;
-    
 
-    private Vector2 moveVector = Vector2.zero;
-    [Range(1f, 50f)]
-    public float moveSpeed = 1f;
+    private Vector3 lastPosition;
 
+    private NavMeshAgent agent;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        lastPosition = transform.position;
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Update()
+    {
+        
+    }
 
     private void FixedUpdate()
     {
-        rb.velocity = moveVector * moveSpeed;
+        Vector2 moveVector = transform.position - lastPosition;
+        UpdateAnimDatas(moveVector);
+        lastPosition = transform.position;
     }
 
-    public void Move(Vector2 _moveVector)
+    public void UpdateAnimDatas(Vector2 moveVector)
     {
-        moveVector = _moveVector;
+        int actualDir;
+        
+        float characterSpeed = moveVector.magnitude;
 
-        // Animation Management
+        animator.SetFloat("Speed", agent.speed);
+
         float x = moveVector.x;
         float y = moveVector.y;
 
-        int actualDir;
-        float characterSpeed = moveVector.magnitude;
-
-        animator.SetFloat("Speed", moveSpeed);
-
         if (characterSpeed > 0.1)
         {
-            vectorDir = moveVector;
-
             if (((y > 0) ? 1 : -1) * y < ((x > 0) ? 1 : -1) * x)
             {
                 if (x > 0)
@@ -71,6 +77,5 @@ public class Controller : MonoBehaviour
                 animator.SetInteger("State", actualDir);
             }
         }
-
     }
 }

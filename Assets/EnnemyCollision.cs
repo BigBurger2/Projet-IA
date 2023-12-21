@@ -14,6 +14,8 @@ public class EnnemyCollision : MonoBehaviour
 
     Coroutine coroutine;
 
+    private float timeLastHit = 0;
+    private bool hit = false;
 
     [SerializeField] private TeamTag team;
     private void Start()
@@ -35,15 +37,20 @@ public class EnnemyCollision : MonoBehaviour
     {
         if (collision.collider.tag == "Ennemy" && !isInvincible) // TODO revoir la condition
         {
+            if (hit)
+                timeLastHit = Time.time;
             StopCoroutine(coroutine);
+            hit = false;
         }
     }
 
     private IEnumerator Invicibility(float dammage)
     {
+        yield return new WaitForSeconds(timeInvicibility - (Time.time - timeLastHit));
         while (true)
         {
             hpComponent.ChangeValue(-dammage);
+            hit = true;
             Debug.Log("Hit");
             yield return new WaitForSeconds(timeInvicibility);
         }
