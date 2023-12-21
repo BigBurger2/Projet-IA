@@ -44,7 +44,7 @@ public class UpdateAnimatorAgent : MonoBehaviour
         
         float characterSpeed = moveVector.magnitude;
 
-        if (characterSpeed > 0.01f)
+        if (characterSpeed > 0)
         {
             animator.SetFloat("Speed", agent.speed);
         }
@@ -57,7 +57,7 @@ public class UpdateAnimatorAgent : MonoBehaviour
         float x = moveVector.x;
         float y = moveVector.y;
 
-        if (characterSpeed > 0.1)
+        if (characterSpeed > 0)
         {
             if (((y > 0) ? 1 : -1) * y < ((x > 0) ? 1 : -1) * x)
             {
