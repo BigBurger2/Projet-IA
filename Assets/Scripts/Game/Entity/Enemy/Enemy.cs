@@ -165,6 +165,13 @@ public class Enemy : Entity
             agent.SetDestination(pattern[nextPoint]);
             agent.speed = speed;
         }
+        else
+        {
+            foreach (GameObject child in healthBarChild)
+            {
+                child.SetActive(false);
+            }
+        }
         //else destination = pattern[nextPoint] - transform.position;
     }
 
