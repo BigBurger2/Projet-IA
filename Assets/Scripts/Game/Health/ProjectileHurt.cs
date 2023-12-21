@@ -18,6 +18,8 @@ public class ProjectileHurt : MonoBehaviour
 
     public bool Invincible { get => invincible; set => invincible = value; }
 
+    [SerializeField] private GameObject fx;
+
     private void Start()
     {
         hpComponent = GetComponent<HpComponent>();
@@ -32,9 +34,15 @@ public class ProjectileHurt : MonoBehaviour
             {
                 if (projComp.GetSource() != team)
                 {
-                    hpComponent.ChangeValue(-projComp.weaponData.dammage);
-                    collision.gameObject.SetActive(false);
+                    
+                Debug.Log("boom");
+                hpComponent.ChangeValue(-projComp.weaponData.dammage);
+                fx.transform.position = collision.transform.position;
+                
+                Instantiate(fx);
+                collision.gameObject.SetActive(false);
                 }
+            }
 
             if (hpComponent.GetCurrentHp() <= 0)
             {

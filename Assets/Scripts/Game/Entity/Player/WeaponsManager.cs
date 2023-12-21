@@ -28,6 +28,8 @@ public class WeaponsManager : MonoBehaviour
     [SerializeField]
     private InputManager InputManager;
 
+    [SerializeField]
+    private AudioSource Firesound;
 
     private Dictionary<GameObject, WeaponList> actualWeapons;
     private Dictionary<GameObject, WeaponList> modifiedWeapons;
@@ -152,7 +154,7 @@ public class WeaponsManager : MonoBehaviour
 
                 wpList.weapons[wpList.index].Fire(lastClickMouse - new Vector2(tempTr.position.x, tempTr.position.y));
 
-
+                Firesound.Play();
 
                 wpList.index++;
                 wpList.index %= wpList.nbWeapons;
