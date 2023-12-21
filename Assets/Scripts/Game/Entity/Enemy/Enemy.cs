@@ -17,6 +17,7 @@ public class Enemy : Entity
     [SerializeField] private bool savage;
     [SerializeField] public GameObject player;
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private GameObject healthBar;
 
 
     public float speed;
@@ -32,6 +33,8 @@ public class Enemy : Entity
     private float distancePlayer;
     private int nextPoint;
 
+    private List<GameObject> healthBarChild;
+
     public List<Vector3> Pattern
     {
         get { return pattern; }
@@ -43,8 +46,18 @@ public class Enemy : Entity
 
     private void Awake()
     {
+        healthBarChild = new List<GameObject>();
+
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+
+        for (int i = 0; i < healthBar.transform.childCount; i++)
+        {
+            GameObject temp = healthBar.transform.GetChild(i).gameObject;
+            temp.SetActive(false);
+            healthBarChild.Add(temp);
+        }
     }
 
     void Start()
@@ -134,11 +147,21 @@ public class Enemy : Entity
             agent.SetDestination(rbP.position);
             agent.speed = followSpeed;
 
+            foreach(GameObject child in healthBarChild)
+            { 
+                child.SetActive(true);
+            }
+
             /*destination = player.transform.position - transform.position;
             rb.velocity = destination.normalized * followSpeed;*/
         }
         else if (distance > 0.2f && !patternOn)
         {
+            foreach (GameObject child in healthBarChild)
+            {
+                child.SetActive(false);
+            }
+
             agent.SetDestination(pattern[nextPoint]);
             agent.speed = speed;
         }
