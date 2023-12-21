@@ -19,4 +19,6 @@ public class WeaponData : ScriptableObject
     public float fireRate;
 
     public Sprite sprite;
+
+    public GameObject prefabWeapon;
 }
