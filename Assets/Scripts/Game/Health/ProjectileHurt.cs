@@ -9,9 +9,12 @@ using UnityEngine;
 [RequireComponent(typeof(HpComponent))]
 public class ProjectileHurt : MonoBehaviour
 {
+
     private HpComponent hpComponent;
     
-    [SerializeField] private TeamTag team; 
+    [SerializeField] private TeamTag team;
+    [SerializeField] private GameObject fx;
+
     private void Start()
     {
         hpComponent = GetComponent<HpComponent>();
@@ -24,15 +27,17 @@ public class ProjectileHurt : MonoBehaviour
         {
             if (projComp.GetSource() != team)
             {
+                Debug.Log("boom");
                 hpComponent.ChangeValue(-projComp.weaponData.dammage);
+                fx.transform.position = collision.transform.position;
+                
+                Instantiate(fx);
                 collision.gameObject.SetActive(false);
             }
 
             if (hpComponent.GetCurrentHp() <= 0)
             {
-                //IMA DEAD
-                Debug.Log("deadge");
-                gameObject.SetActive(false);
+                gameObject.GetComponent<Entity>()?.OnDeath();
             }
         }
     }

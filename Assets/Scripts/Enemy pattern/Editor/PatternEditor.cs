@@ -13,7 +13,7 @@ public class PatternEditor : Editor
         if (Enemy.patternOn)
         {
 
-            for (int i = 0; i < Enemy.Pattern.Length; i++)
+            for (int i = 0; i < Enemy.Pattern.Count; i++)
             {
                 Vector2 newTargetPosition = Handles.PositionHandle(Enemy.Pattern[i], Quaternion.identity);
 
