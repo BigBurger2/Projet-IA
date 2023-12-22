@@ -20,8 +20,8 @@ struct WeaponList
 public class WeaponsManager : MonoBehaviour
 {
     public Transform Player;
-    [SerializeField]
-    private GameObject weaponPrefab;
+/*    [SerializeField]
+    private GameObject weaponPrefab;*/
     [SerializeField]
     private List<WeaponData> weaponDatas;
 
@@ -59,7 +59,7 @@ public class WeaponsManager : MonoBehaviour
         // Génère les copies nécessaire et associe une instance de coroutine pour chaque arme
         foreach(var data in weaponDatas)
         {
-            Weapon wp = weaponPrefab.GetComponent<Weapon>();
+            Weapon wp = data.prefabWeapon.GetComponent<Weapon>();
             wp.weaponData = data;
             // Create the parent object
             GameObject parent = new GameObject(data.weaponName);
@@ -85,7 +85,7 @@ public class WeaponsManager : MonoBehaviour
             // Instantiation de toutes les copies nécessaires
             for (int i = 0;  i < nbWeaponsToStore; i++)
             {
-                GameObject temp = Instantiate(weaponPrefab, parent.transform);
+                GameObject temp = Instantiate(data.prefabWeapon, parent.transform);
                 temp.SetActive(false);
                 tmpWpList.weapons.Add(temp.GetComponent<Weapon>());
             }

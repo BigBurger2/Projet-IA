@@ -44,11 +44,7 @@ public class Weapon : MonoBehaviour
     {
         if (fired)
         {
-            if ((startPos - new Vector2(transform.position.x, transform.position.y)).magnitude < weaponData.range)
-            {
-                rb.velocity = Dir * weaponData.weaponSpeed;
-            }
-            else
+            if ((startPos - new Vector2(transform.position.x, transform.position.y)).magnitude >= weaponData.range)
             {
                 fired = false;
                 gameObject.SetActive(false);
@@ -62,6 +58,7 @@ public class Weapon : MonoBehaviour
         Dir = _Dir.normalized;
         gameObject.SetActive(true);
         fired = true;
+        rb.velocity = Dir * weaponData.weaponSpeed;
     }
 
     public TeamTag GetSource()

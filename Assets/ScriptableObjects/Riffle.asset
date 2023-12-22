@@ -19,3 +19,4 @@ MonoBehaviour:
   range: 8
   fireRate: 5
   sprite: {fileID: 1696693269417788979, guid: 3fc1e45327db6884d95d1630872a53f2, type: 3}
+  prefabWeapon: {fileID: 3830470635086441469, guid: 02d70a9452b4a0d40a49810dceb62d24, type: 3}
