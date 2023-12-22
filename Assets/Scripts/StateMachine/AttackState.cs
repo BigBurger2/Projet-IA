@@ -19,6 +19,10 @@ public class AttackState : State
     public override State RunCurrentState()  //Do()
     {
         Debug.Log("I Have Attacked !");
+        if (idleState.distancePlayer > 0.0)
+        {
+            chaseState.isInAttackRange = false;
+        }
         if (!idleState.canSeeThePlayer)
         {
             return idleState;

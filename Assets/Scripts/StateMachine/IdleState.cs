@@ -9,7 +9,7 @@ using UnityEngine.UI;
 using System.IO;
 
 
-
+[RequireComponent(typeof(HpComponent))]
 public class IdleState : State
 {
     public float distance;
@@ -23,25 +23,18 @@ public class IdleState : State
     public bool canSeeThePlayer;
     public ChaseState chaseState;
     public Rigidbody2D rbP;
+    private Vector2 initPos;
+    public HpComponent hpComponent;
     public Vector3[] Pattern
     {
         get { return pattern; }
         set { pattern = value; }
     }
-
-    //public override void OnStart()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
-    //public override void OnStop()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
     void Start()
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        hpComponent = GetComponent<HpComponent>();
         if (player == null) { player = GameObject.FindGameObjectWithTag("Player"); }
 
         //rb = GetComponent<Rigidbody2D>();
@@ -56,9 +49,10 @@ public class IdleState : State
         if (patternOn)
         {
             nextPoint = 1;
-            transform.position = pattern[0];
+            initPos = transform.position;
+            //transform.position = pattern[0];
 
-            agent.SetDestination(pattern[nextPoint]);
+            //agent.SetDestination(pattern[nextPoint]);
             agent.speed = speed;
         }
 
@@ -66,19 +60,23 @@ public class IdleState : State
 
     public override State RunCurrentState() //Do()
     {
-        if (distancePlayer < chaseState.followDistance)
-        {
-            canSeeThePlayer = true;
-        }
         distancePlayer = (transform.position - player.transform.position).magnitude;
         if (patternOn)
         {
             FollowPattern();
         }
-        
+        if (distancePlayer < chaseState.followDistance)
+        {
+            canSeeThePlayer = true;
+        }
         if (canSeeThePlayer)
         {
             return chaseState;
+        }
+        if (hpComponent.GetCurrentHp() <= 0)
+        {
+            gameObject.GetComponent<Entity>()?.OnDeath();
+            return this;
         }
         else
         {
@@ -88,18 +86,18 @@ public class IdleState : State
 
     void FollowPattern()
     {
-        distance = Vector2.Distance(transform.position, pattern[nextPoint]);
+        //distance = Vector2.Distance(transform.position, pattern[nextPoint]);
         /*destination = pattern[nextPoint] - transform.position;*/
 
 
-        agent.SetDestination(pattern[nextPoint]);
+        agent.SetDestination(initPos);
         agent.speed = speed;
 
-        if (distance < 2f)
-        {
-            nextPoint++;
-            if (nextPoint == pattern.Length) nextPoint = 0;
-        }
+        //if (distance < 2f)
+        //{
+        //    nextPoint++;
+        //    if (nextPoint == pattern.Length) nextPoint = 0;
+        //}
 
 
     }
