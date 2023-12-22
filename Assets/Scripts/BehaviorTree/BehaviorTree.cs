@@ -12,6 +12,7 @@ public class BehaviorTree : ScriptableObject
     public Node rootNode; 
     public Node.State treeState = Node.State.Running;
     public List<Node> nodes = new List<Node>();
+    
     public Node.State Update()
     {
         if (treeState == Node.State.Running)
@@ -84,7 +85,7 @@ public class BehaviorTree : ScriptableObject
             composite.children.Remove(child);
         }
     }
-    public List<Node> GetChildren(Node parent)
+    public static List<Node> GetChildren(Node parent)
     {
         List<Node> children = new List<Node>();
         
@@ -114,5 +115,20 @@ public class BehaviorTree : ScriptableObject
         BehaviorTree tree = Instantiate(this);
         tree.rootNode = tree.rootNode.Clone();
         return tree;
+    }
+    
+    public static void Traverse(Node node, System.Action<Node> visiter) {
+        if (node != null) {
+            visiter.Invoke(node);
+            var children = GetChildren(node);
+            children.ForEach((n) => Traverse(n, visiter));
+        }
+    }
+    
+    public void Bind(GameObject context) {
+        Traverse(rootNode, node => {
+            node.context = context;
+            node.OnInit();
+        });
     }
 }

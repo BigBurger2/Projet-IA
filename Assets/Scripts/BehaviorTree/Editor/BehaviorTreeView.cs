@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
+using Edge = UnityEditor.Experimental.GraphView.Edge;
+
 public class BehaviorTreeView : GraphView
 {
     public Action<NodeView> OnNodeSelected;
@@ -20,7 +23,7 @@ public class BehaviorTreeView : GraphView
         this.AddManipulator(new RectangleSelector());
 
 
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/BehaviorTree/Editor/BehaviorTreeEditor.uss");
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Scripts/BehaviorTree/Editor/BehaviorTreeEditor.uss");
         styleSheets.Add(styleSheet);
     }
 
@@ -30,7 +33,13 @@ public class BehaviorTreeView : GraphView
             var types = TypeCache.GetTypesDerivedFrom<ActionNode>();
             foreach (var type in types)
             {
-                evt.menu.AppendAction($"{type.BaseType.Name} {type.Name}",(a)=>CreateNode(type));
+                if (!type.IsAbstract)
+                {
+                    String parentName = type.BaseType.Name == "ActionNode"
+                        ? "ActionNode"
+                        : $"ActionNode/{type.BaseType.Name}";
+                    evt.menu.AppendAction($"{parentName}/{type.Name}",(a)=>CreateNode(type));
+                }
             }
         }
         
@@ -38,7 +47,13 @@ public class BehaviorTreeView : GraphView
             var types = TypeCache.GetTypesDerivedFrom<CompositeNode>();
             foreach (var type in types)
             {
-                evt.menu.AppendAction($"{type.BaseType.Name} {type.Name}",(a)=>CreateNode(type));
+                if (!type.IsAbstract)
+                {
+                    String parentName = type.BaseType.Name == "CompositeNode"
+                        ? "CompositeNode"
+                        : $"CompositeNode/{type.BaseType.Name}";
+                    evt.menu.AppendAction($"{parentName}/{type.Name}", (a) => CreateNode(type));
+                }
             }
         }
         
@@ -46,7 +61,13 @@ public class BehaviorTreeView : GraphView
             var types = TypeCache.GetTypesDerivedFrom<DecoratorNode>();
             foreach (var type in types)
             {
-                evt.menu.AppendAction($"{type.BaseType.Name} {type.Name}",(a)=>CreateNode(type));
+                if (!type.IsAbstract)
+                {
+                    String parentName = type.BaseType.Name == "DecoratorNode"
+                        ? "DecoratorNode"
+                        : $"DecoratorNode/{type.BaseType.Name}";
+                    evt.menu.AppendAction($"{parentName}/{type.Name}", (a) => CreateNode(type));
+                }
             }
         }
     }
@@ -77,7 +98,7 @@ public class BehaviorTreeView : GraphView
         //create edges
         tree.nodes.ForEach(n =>
         {
-            var children = tree.GetChildren(n);
+            var children = BehaviorTree.GetChildren(n);
             children.ForEach(c =>
             {
                 NodeView parentView = FindNodeView(n);
