@@ -12,20 +12,15 @@ public class ChaseState : State
     public float followDistance = 10f;
     public float followSpeed;
 
-    //public override void OnStart()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
-    //public override void OnStop()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
 
     public override State RunCurrentState() //Do()
     {
-        idleState.distancePlayer = Math.Sqrt(Math.Pow(idleState.player.transform.position.x - transform.position.x, 2) + Math.Pow(idleState.player.transform.position.y - transform.position.y, 2));
+        idleState.distancePlayer = (transform.position - idleState.player.transform.position).magnitude;
         FollowPlayer();
+        //if ()
+        //{
+        //    isInAttackRange = true;
+        //}
         if(isInAttackRange)
         {
             return attackState;

@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
-{
-    public GameObject gameOverCanva;
-    public GameObject WinCanva;
+{ 
 
     [SerializeField] GameObject player;
     [SerializeField] List<Entity> enemyRoom1;
@@ -42,15 +40,15 @@ public class Game : MonoBehaviour
         if (BossRoom.Count == 0)
         {
             BossDoor.OppenTheDoor();
-            WinCanva.SetActive(true);
             pauseManager.Stop();
+            SceneManager.LoadScene(4);
 
         }
 
         if (playerLife.GetCurrentHp() <= 0) 
         {
-            gameOverCanva.SetActive(true);
             pauseManager.Stop();
+            SceneManager.LoadScene(3);
         } 
     }
 
