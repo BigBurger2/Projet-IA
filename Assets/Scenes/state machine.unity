@@ -29685,7 +29685,7 @@ MonoBehaviour:
   attackState: {fileID: 1370645532}
   isInAttackRange: 0
   followDistance: 10
-  followSpeed: 5
+  followSpeed: 8
 --- !u!4 &236072841
 Transform:
   m_ObjectHideFlags: 0
