@@ -9,7 +9,6 @@ using UnityEngine.UI;
 using System.IO;
 
 
-[RequireComponent(typeof(HpComponent))]
 public class IdleState : State
 {
     public float distance;
@@ -24,7 +23,7 @@ public class IdleState : State
     public ChaseState chaseState;
     public Rigidbody2D rbP;
     private Vector2 initPos;
-    public HpComponent hpComponent;
+
     public Vector3[] Pattern
     {
         get { return pattern; }
@@ -34,7 +33,6 @@ public class IdleState : State
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        hpComponent = GetComponent<HpComponent>();
         if (player == null) { player = GameObject.FindGameObjectWithTag("Player"); }
 
         //rb = GetComponent<Rigidbody2D>();
@@ -72,11 +70,6 @@ public class IdleState : State
         if (canSeeThePlayer)
         {
             return chaseState;
-        }
-        if (hpComponent.GetCurrentHp() <= 0)
-        {
-            gameObject.GetComponent<Entity>()?.OnDeath();
-            return this;
         }
         else
         {
