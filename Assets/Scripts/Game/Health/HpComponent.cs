@@ -12,14 +12,28 @@ public class HpComponent : MonoBehaviour
     [SerializeField] private bool overhealAllowed;
 
     [SerializeField] private Slider HPSlider;
+
+    [SerializeField] public Material mat;
+
     private void Start()
     {
         currentHp = maxHp;
+        if (gameObject.tag == "Player")
+        {
+            mat.SetFloat("Floatr", 5);
+        }
+        
     }
 
     public void ChangeValue(float difference)
     {
         currentHp += difference;
+
+        if (gameObject.tag == "Player")
+        {
+            mat.SetFloat("Floatr", currentHp / maxHp * 5);
+        }
+
         if (HPSlider != null) HPSlider.value = currentHp/maxHp;
 
         if (currentHp < 0)
