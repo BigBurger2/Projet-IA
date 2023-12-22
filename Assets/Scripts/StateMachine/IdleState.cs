@@ -66,15 +66,16 @@ public class IdleState : State
 
     public override State RunCurrentState() //Do()
     {
+        if (distancePlayer < chaseState.followDistance)
+        {
+            canSeeThePlayer = true;
+        }
         distancePlayer = (transform.position - player.transform.position).magnitude;
         if (patternOn)
         {
             FollowPattern();
         }
-        if (distancePlayer < chaseState.followDistance)
-        {
-            canSeeThePlayer = true;
-        }
+        
         if (canSeeThePlayer)
         {
             return chaseState;
