@@ -14,7 +14,7 @@ public class ChasePlayer: ActionNode
     
     protected override void OnStart()
     {
-
+        state = State.Running;
     }
 
     protected override void OnStop()
@@ -26,12 +26,10 @@ public class ChasePlayer: ActionNode
     {
         if (e != null)
         {
-            float distance = e.DoChasePlayer();
-            if (distance <= distanceWanted)
+            if (e.DoChasePlayer(distanceWanted))
             {
                 state = State.Success;
             }
-            state = State.Running;
         }
         else
         {

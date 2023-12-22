@@ -24,7 +24,7 @@ public class Repeat : DecoratorNode {
         if (child == null) {
             return State.Failure;
         }
-
+        
         switch (child.Update()) {
             case State.Running:
                 break;

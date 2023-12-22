@@ -1,5 +1,5 @@
 ﻿
 public interface ICanChasePlayer
 {
-    public float DoChasePlayer();
+    public bool DoChasePlayer(float distanceWanted);
 }

@@ -15,12 +15,12 @@ public class WaitingPlayer : DecoratorNode
     private Collider2D collider;
     protected override void OnStart()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     protected override void OnStop()
     {
-        throw new System.NotImplementedException();
+
     }
 
     protected override State OnUpdate()
@@ -29,6 +29,7 @@ public class WaitingPlayer : DecoratorNode
         {
             if (e.DoWaitFoPlayer())
             {
+                child.Update();
                 return State.Success;
             }
             return State.Running;
