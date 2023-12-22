@@ -361,7 +361,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1739569074}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LaunchGame
+        m_MethodName: LaunchLvl
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
