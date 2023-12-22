@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinSceen.unity
     guid: 2372e072426064047aa33a53c327db8b
+  - enabled: 1
+    path: Assets/Scenes/BossRoom.unity
+    guid: 470b0ac39500c2342ae325fa473e0f4a
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: ed83cbbbf2a4c5141988d8627ed899e2, type: 2}

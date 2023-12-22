@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
-{ 
-
+{
+    [SerializeField]  bool inBossRoom = false;
     [SerializeField] GameObject player;
     [SerializeField] List<Entity> enemyRoom1;
     [SerializeField] List<Entity> enemyRoom2;
@@ -26,30 +26,33 @@ public class Game : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enemyRoom1.Count == 0)
+        if (!inBossRoom)
         {
-           Room1.OppenTheDoor();
-            //Upgrade Weapon ?
-        }
+            if (enemyRoom1.Count == 0)
+            {
+               Room1.OppenTheDoor();
+                //Upgrade Weapon ?
+            }
 
-        if (enemyRoom2.Count == 0)
-        {
-            Room2.OppenTheDoor();
-        }
+            if (enemyRoom2.Count == 0)
+            {
+                Room2.OppenTheDoor();
+            }
         
-        if (BossRoom.Count == 0)
-        {
-            BossDoor.OppenTheDoor();
-            pauseManager.Stop();
-            SceneManager.LoadScene(4);
+            if (BossRoom.Count == 0)
+            {
+                BossDoor.OppenTheDoor();
+                //pauseManager.Stop();
+                SceneManager.LoadScene(5);
 
+            }
+
+            if (playerLife.GetCurrentHp() <= 0) 
+            {
+                pauseManager.Stop();
+                SceneManager.LoadScene(3);
+            } 
         }
-
-        if (playerLife.GetCurrentHp() <= 0) 
-        {
-            pauseManager.Stop();
-            SceneManager.LoadScene(3);
-        } 
     }
 
     private void RemoveEnemy(Entity ennemie)

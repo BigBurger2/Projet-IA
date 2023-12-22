@@ -43,7 +43,6 @@ public class PauseManager : MonoBehaviour
             menuPause.SetActive(true);
             pause = true;
         }
-
     }
 
 }
