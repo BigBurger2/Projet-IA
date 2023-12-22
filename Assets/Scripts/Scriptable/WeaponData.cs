@@ -21,4 +21,5 @@ public class WeaponData : ScriptableObject
     public Sprite sprite;
 
     public GameObject prefabWeapon;
+    [SerializeField] public TeamTag source;
 }

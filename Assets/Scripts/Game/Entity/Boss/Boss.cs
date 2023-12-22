@@ -13,9 +13,11 @@ public class Boss : Entity, ICanBigZoneAtk, iCanDashAtk, ICanTriBoomAtk, ICanWai
 
     private HpComponent hpComponent;
     private NavMeshAgent navagent;
+    private HitBoxBank hbBank;
     
     [SerializeField] private float chaseSpeed = 10;
-    
+    [SerializeField] private List<HitBoxData> hitboxesDatas;
+
     private void Start()
     {
         hpComponent = GetComponent<HpComponent>();
@@ -23,6 +25,15 @@ public class Boss : Entity, ICanBigZoneAtk, iCanDashAtk, ICanTriBoomAtk, ICanWai
 
         navagent.updateRotation = false;
         navagent.updateUpAxis = false;
+
+        GameObject hitboxBank = new GameObject("BossHitboxBank");
+        hbBank = hitboxBank.AddComponent<HitBoxBank>();
+        
+        hbBank.Bind(gameObject);
+        foreach (var hitBoxData in hitboxesDatas)
+        {
+            hbBank.AddHitbox(hitBoxData);
+        }
     }
 
     
@@ -48,7 +59,7 @@ public class Boss : Entity, ICanBigZoneAtk, iCanDashAtk, ICanTriBoomAtk, ICanWai
     {
         Debug.Log("DoDashAtk");
         navagent.isStopped = true;
-        
+        hbBank.EnableHitbox(AgentAttack.BossDash, player.transform.position);
     }
 
     public void DoTriBoomAtk()

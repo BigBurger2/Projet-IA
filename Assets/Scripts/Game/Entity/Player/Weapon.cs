@@ -22,8 +22,7 @@ public class Weapon : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
 
-    [SerializeField]
-    private TeamTag source;
+    
     
 
     // Start is called before the first frame update
@@ -63,6 +62,6 @@ public class Weapon : MonoBehaviour
 
     public TeamTag GetSource()
     {
-        return source;
+        return weaponData.source;
     }
 }
