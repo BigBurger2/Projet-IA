@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -66,6 +67,7 @@ public class Boss : Entity, ICanBigZoneAtk, iCanDashAtk, ICanTriBoomAtk, ICanWai
     {
         Debug.Log("DoTriBoomAtk");
         navagent.isStopped = true;
+        hbBank.EnableHitbox(AgentAttack.TriBoom, player.transform.position);
     }
 
     public bool DoWaitFoPlayer()
@@ -96,7 +98,13 @@ public class Boss : Entity, ICanBigZoneAtk, iCanDashAtk, ICanTriBoomAtk, ICanWai
 
     public void DoSelectTarget()
     {
-        Debug.Log("DoSelectTarget");
-        //wpManager.SetTarget(player);
+        if (player != null) {
+            // verifier c cool
+        }
+    }
+
+    public GameObject GetTarget()
+    {
+        return player;
     }
 }

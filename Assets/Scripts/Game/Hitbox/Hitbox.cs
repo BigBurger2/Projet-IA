@@ -44,19 +44,26 @@ public class Hitbox : MonoBehaviour
 
         if (isActive)
         {
-            if (datas.isMelee)
+            ICanSelectTarget e = context.GetComponent<Entity>() as ICanSelectTarget;
+            if (!datas.isMelee)
             {
-                var targetPos = new Vector2(Mathf.Sin((gameObject.transform.rotation.z) * Mathf.Deg2Rad), Mathf.Cos((gameObject.transform.rotation.z) * Mathf.Deg2Rad)) * -speed;
-                var currentpos= context.transform.position ;
-                context.transform.position = new Vector3(currentpos.x + targetPos.x,currentpos.y - targetPos.y,0);
-            }
-            else
-            {
-                gameObject.transform.position = gameObject.transform.forward * speed;
+                var targetPos = e.GetTarget().transform.position;
+                var currentpos = context.transform.position;
+                var diff = targetPos - currentpos;
+                gameObject.transform.position += diff.normalized *speed;
+                gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
             }
             
             if (timepassed >= datas.ttl)
             {
+                if (datas.isMelee)
+                {
+                    var targetPos = e.GetTarget().transform.position;
+                    var currentpos = context.transform.position;
+                    var diff = targetPos - currentpos;
+                    context.transform.position += diff.normalized * (datas.range * 1.5f);
+                }
+
                 collider.enabled = false;
                 gameObject.SetActive(false);
             }

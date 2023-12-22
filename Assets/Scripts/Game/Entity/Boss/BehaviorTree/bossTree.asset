@@ -155,7 +155,7 @@ MonoBehaviour:
   guid: 187641f7eb31a674c8bd07c0a02184be
   position: {x: 325.99997, y: 305.99997}
   context: {fileID: 0}
-  duration: 0.5
+  duration: 2
 --- !u!114 &5027920674754820579
 MonoBehaviour:
   m_ObjectHideFlags: 0
